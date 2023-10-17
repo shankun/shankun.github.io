@@ -5,7 +5,7 @@ draft = false
 authors = ["Simon Tatham"]
 
 [taxonomies]
-categories = ["文章"]
+categories = ["学而时习之"]
 tags = ["coroutines", "C++"]
 
 [extra]
@@ -13,7 +13,7 @@ lang = "zh_CN"
 toc = true
 comment = false
 copy = true
-math = false
+math = true
 mermaid = false
 outdate_alert = false
 outdate_alert_days = 120
@@ -194,7 +194,7 @@ I have to start by acknowledging my personal biases: my _first_ reaction to that
 My own programming style has always been single-threaded wherever possible. I mostly only use extra threads when I really can’t avoid it, usually because some operating system or library API makes it impossible, or _astonishingly_ awkward, to do a thing any other way.<sup id='footnote-win32-read-write'>1</sup> 
 I’ve occasionally gone as far as parallelising a large number of completely independent computations using some convenient ready-made system like Python `multiprocessing`, but I’m at least as likely to do that kind of thing by putting each computation into a completely separate _process_, and parallelising them at the process level, using a `make`\-type tool or GNU `parallel`.
 
-Partly, that’s because I still think of threads as heavyweight. On Linux, they consume a process id, and those have a limited supply. Switching between threads requires a lot more saving and restoring of registers than an ordinary function call, and _also_ needs a transfer from user mode to kernel mode and back, with an extra set of saves and restores for that. The data structures you use to transfer data values between the threads must be protected by a locking mechanism, which costs extra time and faff. _Perhaps_ all of these considerations are minor in 2023, where they were significant in 2000? I still _feel_ as if I wouldn’t want to commit to casually making 250 threads in the course of a single `spigot` computation (which is about the number of coroutines it constructs in the course of computing a few hundred digits of [_e__π_ − _π_](https://xkcd.com/217/)), _or_ to doing a kernel-level thread switch for every single time one of those threads passes a tuple of four integers to another. `spigot` is slow enough as it is – and one of my future ambitions for it is to be able to parallelise 1000 of _those_ computations! But I have to admit that I haven’t actually tried this strategy and benchmarked it. So _maybe_ I have an outdated idea of what it would cost.
+Partly, that’s because I still think of threads as heavyweight. On Linux, they consume a process id, and those have a limited supply. Switching between threads requires a lot more saving and restoring of registers than an ordinary function call, and _also_ needs a transfer from user mode to kernel mode and back, with an extra set of saves and restores for that. The data structures you use to transfer data values between the threads must be protected by a locking mechanism, which costs extra time and faff. _Perhaps_ all of these considerations are minor in 2023, where they were significant in 2000? I still _feel_ as if I wouldn’t want to commit to casually making 250 threads in the course of a single `spigot` computation (which is about the number of coroutines it constructs in the course of computing a few hundred digits of [$e^π−π$](https://xkcd.com/217/)), _or_ to doing a kernel-level thread switch for every single time one of those threads passes a tuple of four integers to another. `spigot` is slow enough as it is – and one of my future ambitions for it is to be able to parallelise 1000 of _those_ computations! But I have to admit that I haven’t actually tried this strategy and benchmarked it. So _maybe_ I have an outdated idea of what it would cost.
 
 Also, I think of threads as _dangerous_. You have to do all that locking and synchronisation to prevent race conditions, and it’s often complicated, and easy to get wrong. My instinct is to view any non-trivial use of threads as 100 data-race bugs waiting to happen. (And if you manage to avoid all of those, probably half a dozen deadlocks hiding behind them!) Now in this _particular_ conversation we were talking about Rust, and that’s a special case on this count, because Rust’s unique selling point is to guarantee that your program is free of data races by the time you’ve managed to get it to compile at all. But in more or less any other language I think I’m still right to be scared!
 
