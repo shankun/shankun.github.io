@@ -1,2 +1,4 @@
 # shankun.github.io
-personal blogs and memos
+static web site of personal blogs and memos.  
+use zola as Static Site Generator.  
+theme: serene
