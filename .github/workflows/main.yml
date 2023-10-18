@@ -1,12 +1,6 @@
 # On every push this script is executed
 on: push
 name: Build and deploy GH Pages
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,6 +13,4 @@ jobs:
         env:
           # Target branch
           PAGES_BRANCH: gh-pages
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: deploy
-        uses: actions/deploy-pages@v2
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
