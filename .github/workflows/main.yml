@@ -17,4 +17,4 @@ jobs:
       - name: where_am_i
         run: pwd && mkdir blog
       - name: create_soft_links
-        run: cd blog && find ../* -maxdepth 0 -type f,d -path "../blog" -prune -o | xargs -i ln -s {}
+        run: cd blog && find ../* -maxdepth 0 -type f,d -path "../blog" -prune | xargs -i ln -s {}
