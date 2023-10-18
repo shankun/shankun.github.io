@@ -17,7 +17,7 @@ jobs:
       - name: create_soft_links
         run: |
           pwd && mkdir -p blog
-          cd blog && find ../* -maxdepth 0 -type f,d -path "../blog" -prune | xargs -i ln -s {}
+          cd blog && find ../* -maxdepth 0 -type f,d -path "../blog" -prune -o -print | xargs -i ln -s {}
           git config user.name "GitHub Actions"
           git config user.email "github-actions-bot@users.noreply.github.com"
           git add .
