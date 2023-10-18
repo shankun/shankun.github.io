@@ -21,7 +21,7 @@
 
 {% block head %}
 {% if config.markdown.highlight_theme == "css" %}
-<link id="hl" rel="stylesheet" type="text/css" href="/blog/hl-light.css" />
+<link id="hl" rel="stylesheet" type="text/css" href="/hl-light.css" />
 {% endif %}
 {% if page.extra.math %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
@@ -144,7 +144,7 @@
 {% endblock content %}
 
 {% block script %}
-<script src="/blog/js/lightense.min.js"></script>
+<script src="/js/lightense.min.js"></script>
 {% if page.extra.mermaid %}
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';

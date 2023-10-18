@@ -5,7 +5,7 @@
 #
 #=========================================================================================
 
-base_url = "/blog"      # Domain name of your website
+base_url = "/"      # Domain name of your website
 title = "每一天都是离别"
 description = "Live slow, die old."
 default_language = "zh-CN"
@@ -44,7 +44,7 @@ anchors = "on"
 name = "Shankun"                         # Your name
 id = "每一天都是离别"                           # Your id / username / handle
 bio = "时光浓淡相宜，人心远近相安，流年长短皆逝，浮生往来皆客"  # Your bio
-avatar = "/blog/img/avatar.webp"            # Your avatar
+avatar = "/img/avatar.webp"            # Your avatar
 links = [                             # Your links
     { name = "GitHub", icon = "github", url = "https://github.com/shankun" },
     { name = "Twitter", icon = "twitter", url = "https://twitter.com/shan_kun" },
@@ -54,8 +54,8 @@ links = [                             # Your links
 homepage_layout = "about"             # "about" | "list"
 
 sections = [
-    { name = "blog", path = "/blog/posts", is_external = false },
-    { name = "projects", path = "/blog/projects", is_external = false },
+    { name = "blog", path = "/posts", is_external = false },
+    { name = "projects", path = "/projects", is_external = false },
     # { name = "about", path = "/about", is_external = false },
     # { name = "github", path = "https://github.com/shankun", is_external = true },
 ]
