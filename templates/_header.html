@@ -1,7 +1,7 @@
 <header {% if config.extra.blur_effect %} class="blur" {% endif %}>
   <div id="header-wrapper">
     <nav>
-      <a href="/">{{ config.extra.id }}</a>
+      <a href="{{ config.base_url }}">{{ config.extra.id }}</a>
       {% if config.extra.sections | length > 1 %}
         <button id="toggler" class="separator" aria-label="toggle expand">{{ config.extra.nav_separator }}</button>
       {% else %}
@@ -42,7 +42,7 @@
       {% if section.generate_feed -%}
       <a href="{{ blog_section_path }}/{{ config.feed_filename }}" aria-label="rss feed">{{ rss_icon | safe }}</a>
       {% elif config.generate_feed -%}
-      <a href="/{{ config.feed_filename }}" aria-label="rss feed">{{ rss_icon | safe }}</a>
+      <a href="{{ config.base_url }}/{{ config.feed_filename }}" aria-label="rss feed">{{ rss_icon | safe }}</a>
       {% endif %}
       {% endif %}
 

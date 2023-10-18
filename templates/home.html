@@ -9,7 +9,7 @@
 
 {% block head %}
 {% if config.markdown.highlight_theme == "css" %}
-<link id="hl" rel="stylesheet" type="text/css" href="/hl-light.css" />
+<link id="hl" rel="stylesheet" type="text/css" href="{{ config.base_url ~ '/hl-light.css' }}" />
 {% endif %}
 {% if section.extra.math %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
@@ -35,7 +35,7 @@
 <div id="wrapper">
   <main>
     <section id="info">
-      <img src="{{ config.extra.avatar }}" alt="avatar">
+      <img src="{{ config.base_url}}{{ config.extra.avatar }}" alt="avatar">
       <div id="text">
         <div>
           <span id="name">{{ config.extra.name }}</span>
@@ -106,7 +106,7 @@
 {% endblock content %}
 
 {% block script %}
-<script src="/js/lightense.min.js"></script>
+<script src="{{ config.base_url ~ '/js/lightense.min.js' }}"></script>
 {% if section.extra.mermaid %}
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
