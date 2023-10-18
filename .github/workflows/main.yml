@@ -14,3 +14,5 @@ jobs:
           # Target branch
           PAGES_BRANCH: gh-pages
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: deploy
+        uses: actions/deploy-pages@v2
