@@ -16,7 +16,7 @@
     <div class="title">Tags</div>
     <div class="tags">
       {% for tag in terms -%}
-      <a href="{{ config.base_url}}{{ tag.permalink }}"># {{ tag.name | lower }}</a>
+      <a href="{{ tag.permalink }}"># {{ tag.name | lower }}</a>
       {%- endfor %}
     </div>
   </main>

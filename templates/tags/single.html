@@ -19,7 +19,7 @@
     </div>
     <div class="post-list">
       {% for post in term.pages %}
-      <a class="post" href="{{ config.base_url}}{{ post.permalink }}">
+      <a class="post" href="{{ post.permalink }}">
         <span>{{ post.title }}</span>
         <span class="date">{{ post.date | date }}</span>
       </a>
