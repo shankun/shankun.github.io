@@ -8,7 +8,7 @@ links = [
 
 [[project]]
 name = "个人网站"
-desc = "zola + serene 静态网站，由drogon驱动"
+desc = "zola + serene 静态网站，由drogon驱动，由Github Actions自动部署到Github Pages"
 tags = ["GithubPages", "website"]
 links = [
   { name = "shankun.github.io", url = "https://github.com/shankun/shankun.github.io" },
