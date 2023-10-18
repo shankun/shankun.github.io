@@ -24,7 +24,7 @@
         {%- if page.summary %}
         <summary>{{ page.summary }}</summary>
         {%- endif %}
-		<link href="{{ page.permalink | safe }}" type="text/html"/>
+		<link href="{{ config.base_url}}{{ page.permalink | safe }}" type="text/html"/>
 		<id>{{ page.permalink | safe }}</id>
 		<content type="html">{{ page.content }}</content>
 	</entry>
