@@ -87,5 +87,5 @@ footer_copyright = "© 2023 ShanKun"
 footer_credits = true                 # Whether to show "powered by zola and serene" in footer
 
 not_found_title = "404"
-not_found_error_text = "找不到"
+not_found_error_text = "找不到任何内容"
 not_found_recover_text = "« 回主页 »"
