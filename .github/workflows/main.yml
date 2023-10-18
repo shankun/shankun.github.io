@@ -16,7 +16,7 @@ jobs:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: create_soft_links
         run: |
-          pwd && mkdir blog
+          pwd && mkdir -p blog
           cd blog && find ../* -maxdepth 0 -type f,d -path "../blog" -prune | xargs -i ln -s {}
           git config user.name "GitHub Actions"
           git config user.email "github-actions-bot@users.noreply.github.com"
