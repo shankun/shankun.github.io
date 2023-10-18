@@ -54,12 +54,12 @@ links = [                             # Your links
 homepage_layout = "about"             # "about" | "list"
 
 sections = [
-    { name = "blog", path = "{{ config.base_url ~ '/posts' }}", is_external = false },
-    { name = "projects", path = "{{ config.base_url ~ '/projects' }}", is_external = false },
+    { name = "blog", path = "/posts", is_external = false },
+    { name = "projects", path = "/projects", is_external = false },
     # { name = "explore", path = "about", is_external = false },
     # { name = "github", path = "https://github.com/shankun", is_external = true },
 ]
-blog_section_path = "{{ config.base_url ~ '/posts' }}"
+blog_section_path = "/posts"
 projects_page = true
 
 nav_separator = "🚀"

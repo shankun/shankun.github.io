@@ -40,7 +40,7 @@
       {% if blog_section_path is defined and section.path is starting_with(blog_section_path) %}
       {% set rss_icon = load_data(path="static/icon/rss.svg") %}
       {% if section.generate_feed -%}
-      <a href="{{ blog_section_path }}/{{ config.feed_filename }}" aria-label="rss feed">{{ rss_icon | safe }}</a>
+      <a href="{{ config.base_url}}{{ blog_section_path }}/{{ config.feed_filename }}" aria-label="rss feed">{{ rss_icon | safe }}</a>
       {% elif config.generate_feed -%}
       <a href="{{ config.base_url }}/{{ config.feed_filename }}" aria-label="rss feed">{{ rss_icon | safe }}</a>
       {% endif %}
