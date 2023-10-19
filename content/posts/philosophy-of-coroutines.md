@@ -22,33 +22,33 @@ truncate_summary = false
 +++
 
 <!--more-->
-- [Introduction {#intro}](#introduction-intro)
-- [Why I’m so enthusiastic about coroutines {#awesome}](#why-im-so-enthusiastic-about-coroutines-awesome)
-  - [The objective view: what makes them useful? {#objective}](#the-objective-view-what-makes-them-useful-objective)
-    - [Versus explicit state machines {#vs-state-machines}](#versus-explicit-state-machines-vs-state-machines)
-    - [Versus conventional threads {#vs-threads}](#versus-conventional-threads-vs-threads)
-  - [The subjective view: why do _I_ like them so much? {#subjective}](#the-subjective-view-why-do-i-like-them-so-much-subjective)
-    - [“Teach the student when the student is ready” {#student-ready}](#teach-the-student-when-the-student-is-ready-student-ready)
-    - [They suit my particular idea of code clarity {#clarity}](#they-suit-my-particular-idea-of-code-clarity-clarity)
-- [Techniques for getting the most out of coroutines {#technique}](#techniques-for-getting-the-most-out-of-coroutines-technique)
-  - [When to use coroutines, and when not to {#when}](#when-to-use-coroutines-and-when-not-to-when)
-  - [Types of code that might usefully become coroutines {#use-cases}](#types-of-code-that-might-usefully-become-coroutines-use-cases)
-    - [Output only: generators {#generator}](#output-only-generators-generator)
-    - [Input only: consumers {#consumer}](#input-only-consumers-consumer)
-    - [Separate input and output: adapters {#adapter}](#separate-input-and-output-adapters-adapter)
-    - [Input and output talking to the same entity: protocols {#protocol}](#input-and-output-talking-to-the-same-entity-protocols-protocol)
-    - [More general, and miscellaneous {#uc-general}](#more-general-and-miscellaneous-uc-general)
-  - [Coroutines large and small {#large-and-small}](#coroutines-large-and-small-large-and-small)
-    - [Activation energy {#activation-energy}](#activation-energy-activation-energy)
-  - [Combine with input queues {#queues}](#combine-with-input-queues-queues)
-  - [Combine with ambient pre-filters {#handlers}](#combine-with-ambient-pre-filters-handlers)
-- [Coroutine paradigms {#features}](#coroutine-paradigms-features)
-  - [TAOCP’s coroutines: symmetric, utterly stackless {#taocp}](#taocps-coroutines-symmetric-utterly-stackless-taocp)
-  - [A subroutine that can resume from where it last left off {#resumable-callee}](#a-subroutine-that-can-resume-from-where-it-last-left-off-resumable-callee)
-  - [Cooperative threads that identify which thread to transfer to next {#cothreads}](#cooperative-threads-that-identify-which-thread-to-transfer-to-next-cothreads)
-  - [A named object identifying a program activity {#named-object}](#a-named-object-identifying-a-program-activity-named-object)
-- [Conclusion {#conclusion}](#conclusion-conclusion)
-- [Footnotes {#footnotes}](#footnotes-footnotes)
+*   [Introduction](#intro)
+*   [Why I’m so enthusiastic about coroutines](#awesome)
+    *   [The objective view: what makes them useful?](#objective)
+        *   [Versus explicit state machines](#vs-state-machines)
+        *   [Versus conventional threads](#vs-threads)
+    *   [The subjective view: why do _I_ like them so much?](#subjective)
+        *   [“Teach the student when the student is ready”](#student-ready)
+        *   [They suit my particular idea of code clarity](#clarity)
+*   [Techniques for getting the most out of coroutines](#technique)
+    *   [When to use coroutines, and when not to](#when)
+    *   [Types of code that might usefully become coroutines](#use-cases)
+        *   [Output only: generators](#generator)
+        *   [Input only: consumers](#consumer)
+        *   [Separate input and output: adapters](#adapter)
+        *   [Input and output talking to the same entity: protocols](#protocol)
+        *   [More general, and miscellaneous](#uc-general)
+    *   [Coroutines large and small](#large-and-small)
+        *   [Activation energy](#activation-energy)
+    *   [Combine with input queues](#queues)
+    *   [Combine with ambient pre-filters](#handlers)
+*   [Coroutine paradigms](#features)
+    *   [TAOCP’s coroutines: symmetric, utterly stackless](#taocp)
+    *   [A subroutine that can resume from where it last left off](#resumable-callee)
+    *   [Cooperative threads that identify which thread to transfer to next](#cothreads)
+    *   [A named object identifying a program activity](#named-object)
+*   [Conclusion](#conclusion)
+*   [Footnotes](#footnotes)
 
 Introduction {#intro}
 ------------
@@ -314,7 +314,7 @@ def record_breaking_values(inputs):
 def record_breaking_values(inputs):
     it = iter(inputs)
     best = next(it)
-    records = \[best\]
+    records = [best]
     for value in it:
         if value > best:
             best = value
@@ -461,7 +461,7 @@ I’ve found that useful in the past as a means of working around limitations of
 \# Before
 def routine(x):
     i = subroutine(x+1)
-    j = subroutine(x\*i)
+    j = subroutine(x*i)
     return i+j
 ```
 
@@ -469,7 +469,7 @@ def routine(x):
 \# After
 def routine(x):
     i = yield Call(subroutine(x+1))
-    j = yield Call(subroutine(x\*i))
+    j = yield Call(subroutine(x*i))
     yield Return(i+j)
 ```
 
