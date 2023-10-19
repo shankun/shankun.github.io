@@ -22,33 +22,33 @@ truncate_summary = false
 +++
 
 <!--more-->
-*   [Introduction](#intro)
-*   [Why I’m so enthusiastic about coroutines](#awesome)
-    *   [The objective view: what makes them useful?](#objective)
-        *   [Versus explicit state machines](#vs-state-machines)
-        *   [Versus conventional threads](#vs-threads)
-    *   [The subjective view: why do _I_ like them so much?](#subjective)
-        *   [“Teach the student when the student is ready”](#student-ready)
-        *   [They suit my particular idea of code clarity](#clarity)
-*   [Techniques for getting the most out of coroutines](#technique)
-    *   [When to use coroutines, and when not to](#when)
-    *   [Types of code that might usefully become coroutines](#use-cases)
-        *   [Output only: generators](#generator)
-        *   [Input only: consumers](#consumer)
-        *   [Separate input and output: adapters](#adapter)
-        *   [Input and output talking to the same entity: protocols](#protocol)
-        *   [More general, and miscellaneous](#uc-general)
-    *   [Coroutines large and small](#large-and-small)
-        *   [Activation energy](#activation-energy)
-    *   [Combine with input queues](#queues)
-    *   [Combine with ambient pre-filters](#handlers)
-*   [Coroutine paradigms](#features)
-    *   [TAOCP’s coroutines: symmetric, utterly stackless](#taocp)
-    *   [A subroutine that can resume from where it last left off](#resumable-callee)
-    *   [Cooperative threads that identify which thread to transfer to next](#cothreads)
-    *   [A named object identifying a program activity](#named-object)
-*   [Conclusion](#conclusion)
-*   [Footnotes](#footnotes)
+- [Introduction {#intro}](#introduction-intro)
+- [Why I’m so enthusiastic about coroutines {#awesome}](#why-im-so-enthusiastic-about-coroutines-awesome)
+  - [The objective view: what makes them useful? {#objective}](#the-objective-view-what-makes-them-useful-objective)
+    - [Versus explicit state machines {#vs-state-machines}](#versus-explicit-state-machines-vs-state-machines)
+    - [Versus conventional threads {#vs-threads}](#versus-conventional-threads-vs-threads)
+  - [The subjective view: why do _I_ like them so much? {#subjective}](#the-subjective-view-why-do-i-like-them-so-much-subjective)
+    - [“Teach the student when the student is ready” {#student-ready}](#teach-the-student-when-the-student-is-ready-student-ready)
+    - [They suit my particular idea of code clarity {#clarity}](#they-suit-my-particular-idea-of-code-clarity-clarity)
+- [Techniques for getting the most out of coroutines {#technique}](#techniques-for-getting-the-most-out-of-coroutines-technique)
+  - [When to use coroutines, and when not to {#when}](#when-to-use-coroutines-and-when-not-to-when)
+  - [Types of code that might usefully become coroutines {#use-cases}](#types-of-code-that-might-usefully-become-coroutines-use-cases)
+    - [Output only: generators {#generator}](#output-only-generators-generator)
+    - [Input only: consumers {#consumer}](#input-only-consumers-consumer)
+    - [Separate input and output: adapters {#adapter}](#separate-input-and-output-adapters-adapter)
+    - [Input and output talking to the same entity: protocols {#protocol}](#input-and-output-talking-to-the-same-entity-protocols-protocol)
+    - [More general, and miscellaneous {#uc-general}](#more-general-and-miscellaneous-uc-general)
+  - [Coroutines large and small {#large-and-small}](#coroutines-large-and-small-large-and-small)
+    - [Activation energy {#activation-energy}](#activation-energy-activation-energy)
+  - [Combine with input queues {#queues}](#combine-with-input-queues-queues)
+  - [Combine with ambient pre-filters {#handlers}](#combine-with-ambient-pre-filters-handlers)
+- [Coroutine paradigms {#features}](#coroutine-paradigms-features)
+  - [TAOCP’s coroutines: symmetric, utterly stackless {#taocp}](#taocps-coroutines-symmetric-utterly-stackless-taocp)
+  - [A subroutine that can resume from where it last left off {#resumable-callee}](#a-subroutine-that-can-resume-from-where-it-last-left-off-resumable-callee)
+  - [Cooperative threads that identify which thread to transfer to next {#cothreads}](#cooperative-threads-that-identify-which-thread-to-transfer-to-next-cothreads)
+  - [A named object identifying a program activity {#named-object}](#a-named-object-identifying-a-program-activity-named-object)
+- [Conclusion {#conclusion}](#conclusion-conclusion)
+- [Footnotes {#footnotes}](#footnotes-footnotes)
 
 Introduction {#intro}
 ------------
@@ -93,7 +93,7 @@ Two decades ago, when I wrote ‘[Coroutines in C](https://www.chiark.greenend.o
 Suppose you have a function that consumes a stream of values, and due to the structure of the rest of your program, it has to receive each individual value via a separate function call:
 
 ```
-function process\_next\_value(v) {
+function process_next_value(v) {
     // ...
 }
 ```
@@ -103,26 +103,26 @@ And suppose the nature of the stream is such that the way you handle each input 
 To write that as a conventional function accepting a single byte on each call, you have to keep a state variable of some kind to remind you of what you were going to use the next byte for:
 
 ```
-function process\_next\_byte(byte) {
-    if (state == TOP\_LEVEL) {
-        if (byte != ESCAPE\_BYTE) {
+function process_next_byte(byte) {
+    if (state == TOP_LEVEL) {
+        if (byte != ESCAPE_BYTE) {
             // emit the byte literally and stay in the same state
             output(byte);
         } else {
             // go into a state where we expect to see a run length next
-            state = EXPECT\_RUN\_LENGTH;
+            state = EXPECT_RUN_LENGTH;
         }
-    } else if (state == EXPECT\_RUN\_LENGTH) {
+    } else if (state == EXPECT_RUN_LENGTH) {
         // store the length
-        run\_length = byte;
+        run_length = byte;
         // go into a state where we expect the byte to be repeatedly output
-        state = EXPECT\_OUTPUT;
-    } else if (state == EXPECT\_OUTPUT) {
+        state = EXPECT_OUTPUT;
+    } else if (state == EXPECT_OUTPUT) {
         // output this byte the right number of times
-        for i in (1,...,run\_length)
+        for i in (1,...,run_length)
             output(byte);
         // and go back to the top-level state for the next input byte
-        state = TOP\_LEVEL;
+        state = TOP_LEVEL;
     }
 }
 ```
@@ -136,15 +136,15 @@ The more complicated the control structure is, the more cumbersome it becomes to
 The more code you write in this style, the more you probably wish that the caller and callee were the other way round. If you were writing the same run-length decompression code in a context where you _called_ a function to read the next byte, it would look a lot more natural (not to mention shorter), because you could call the get-byte function in multiple places:
 
 ```
-function run\_length\_decompress(stream) {
+function run_length_decompress(stream) {
     while (byte = stream.getbyte()) {
-        if (byte != ESCAPE\_BYTE) {
+        if (byte != ESCAPE_BYTE) {
             output(byte);
         } else {
-            run\_length = stream.getbyte();
-            byte\_to\_repeat = stream.getbyte();
-            for i in (1,...,run\_length)
-                output(byte\_to\_repeat);
+            run_length = stream.getbyte();
+            byte_to_repeat = stream.getbyte();
+            for i in (1,...,run_length)
+                output(byte_to_repeat);
         }
     }
 }
@@ -157,12 +157,12 @@ In other words, each of the three state values `TOP_LEVEL`, `EXPECT_RUN_LENGTH` 
 And if you needed to extend _this_ version of the code so that it could read a list of input bytes to repeat, it would be no trouble at all, because there’s nothing to stop you putting a call to `stream.getbyte()` in a loop:
 
 ```
-            num\_output\_repetitions = stream.getbyte();
-            num\_input\_bytes = stream.getbyte();
-            for i in (1,...,num\_input\_bytes)
-                input\_bytes.append(stream.getbyte());
-            for i in (1,...,num\_output\_repetitions)
-                for byte in input\_bytes
+            num_output_repetitions = stream.getbyte();
+            num_input_bytes = stream.getbyte();
+            for i in (1,...,num_input_bytes)
+                input_bytes.append(stream.getbyte());
+            for i in (1,...,num_output_repetitions)
+                for byte in input_bytes
                     output(byte);
 
 ```
@@ -299,7 +299,7 @@ If a coroutine only generates output, then there’s a third alternative to maki
 
 ```
 \# Written as a generator
-def record\_breaking\_values(inputs):
+def record_breaking_values(inputs):
     it = iter(inputs)
     best = next(it)
     yield best
@@ -311,7 +311,7 @@ def record\_breaking\_values(inputs):
 
 ```
 \# Ordinary function that just returns a list
-def record\_breaking\_values(inputs):
+def record_breaking_values(inputs):
     it = iter(inputs)
     best = next(it)
     records = \[best\]
@@ -365,7 +365,7 @@ There are lots of natural adapters of this kind that you might usefully write as
 For example, here’s a tiny Python generator function that I put in a lot of my programs, because I often find I want to use it, and despite being so simple, it’s not in the standard library:
 
 ```
-def cyclic\_pairs(inputs):
+def cyclic_pairs(inputs):
     it = iter(inputs)
     prev = first = next(it)
     for curr in it:
@@ -399,7 +399,7 @@ A good example is the key exchange layer of the SSH protocol. The two sides exch
 The sequence of packets within each key exchange method is different; only one of those sequences is used; and the whole thing takes place in a loop, restarting every time a new key exchange is needed. These are all markers of ‘looks like control flow’, and make it very natural to write the code in a style like this:
 
 ```
-function key\_exchange() {
+function key_exchange() {
     send(KEXINIT); // key exchange initialisation packet
     wait for other side’s KEXINIT;
     outer loop {
@@ -488,7 +488,7 @@ Speaking of messing about with control flow, another stunt use of coroutines –
 Some languages encourage you to invent control flow primitives of your own, by means of making it easy to pass blocks of code to a function call:
 
 ```
-function my\_control\_structure(code) {
+function my_control_structure(code) {
     set up stuff;
     while (some condition)
         code.run();
@@ -496,7 +496,7 @@ function my\_control\_structure(code) {
 }
 
 # now the braced block becomes the ‘code’ parameter to the above function
-my\_control\_structure {
+my_control_structure {
     statements;
 }
 ```
@@ -575,9 +575,9 @@ But now suppose you’ve written your transport layer in the form of a coroutine
 
 ```
 // What you’d like to write
-function transport\_layer() {
+function transport_layer() {
     // ...
-    pktin = co\_await PacketInputQueue;
+    pktin = co_await PacketInputQueue;
     if (pktin.type != FOO)
         disconnect("got packet type %s, wanted FOO");
     // ...
@@ -586,10 +586,10 @@ function transport\_layer() {
 
 ```
 // What you have to write instead every time
-function transport\_layer() {
+function transport_layer() {
     // ...
     while (true) {
-        pktin = co\_await PacketInputQueue;
+        pktin = co_await PacketInputQueue;
         if (pktin.type == IGNORE)
             continue;
     }
@@ -618,22 +618,22 @@ Those variables can be as simple or as complicated as you like. It might be as s
 One idea along these lines that I haven’t yet had the opportunity to try is to have a _lexically scoped_ handler, installed for the duration of a particular block of code, and uninstalled again automatically by an object’s destructor. It might look something like this (details completely made up):
 
 ```
-function event\_stream\_consuming\_coroutine() {
+function event_stream_consuming_coroutine() {
     // Here, we can receive any event type
-    event = co\_await EventQueue;
+    event = co_await EventQueue;
 
     {
         // Install a handler for a particular event we don’t want
         // to be bothered with in the next loop
-        HandlerInstaller hi(EventQueue, EVENT\_BORING, lambda(event) {
+        HandlerInstaller hi(EventQueue, EVENT_BORING, lambda(event) {
             fixed code to handle this event;
         });
 
         // Now do some kind of a loop over the remaining event
-        // types, which can assume EVENT\_BORING never appears.
+        // types, which can assume EVENT_BORING never appears.
         while (some condition) {
             // imagine lots of subsidiary control flow here
-            event = co\_await EventQueue;
+            event = co_await EventQueue;
         }
 
         // At the end of this block, the HandlerInstaller object
@@ -641,8 +641,8 @@ function event\_stream\_consuming\_coroutine() {
     }
 
     // And here we’re back to being able to receive any event,
-    // even EVENT\_BORING
-    event = co\_await EventQueue;
+    // even EVENT_BORING
+    event = co_await EventQueue;
 }
 ```
 
@@ -708,14 +708,14 @@ This ‘resumable subroutine’ architecture has consequences beyond the details
 Firstly, what happens if you want to divide up the work of the callee coroutine into subroutines? (For example, in Python, a generator can `yield from` another generator, so that the second one runs to completion and delivers all its results to the same place as the first generator.) The most obvious way to implement a ‘sub-coroutine’ is to have the parent coroutine call it repeatedly in a loop, passing its results back one by one:
 
 ```
-function parent\_coroutine() {
+function parent_coroutine() {
     yield START;
 
     // Make an instance of a sub-coroutine
-    coroutine\_instance sub = sub\_coroutine();
+    coroutine_instance sub = sub_coroutine();
     // And run it to completion, passing on all its yields
     while (sub is not finished)
-        yield sub.next\_yielded\_thing();
+        yield sub.next_yielded_thing();
 
     yield END;
 }
