@@ -34,7 +34,7 @@
 {% block content %}
 <div id="wrapper">
   <main>
-    <section id="info">
+    <section id="info" style="background-color: #FFF">
       <img src="{{ config.base_url}}{{ config.extra.avatar }}" alt="avatar">
       <div id="text">
         <div>
@@ -46,7 +46,7 @@
         <div id="bio"> {{ config.extra.bio }} </div>
       </div>
     </section>
-    <section id="links">
+    <section id="links" style="background-color: #FFF">
       <div id="left">
         {% for section in config.extra.sections %}
         <a href="{{ config.base_url}}{{ section.path }}" {% if section.is_external %}target="_blank" rel='noreferrer noopener'{% endif %}>{{ section.name }}</a>
@@ -68,7 +68,7 @@
       </div>
     </section>
     {% if config.extra.homepage_layout == 'about' %}
-      <section id="brief" class="prose">
+      <section id="brief" class="prose" style="background-color: #FFF">
         {{ section.content | trim | safe }}
       </section>
     {% elif config.extra.homepage_layout == 'list' %}
