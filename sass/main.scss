@@ -502,6 +502,9 @@ body.homepage {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
+    }
+
+    #name {
       color:LightGoldenRodYellow;
       background-color:#182F1D;
       text-shadow: 0 0 6px #fff, 0 0 12px #fff, 0 0 24px steelblue, 0 0 48px steelblue;
@@ -510,7 +513,7 @@ body.homepage {
     #id {
       margin-left: 0.5em;
       color: var(--primary-color);
-      background-color:#182F1D;
+      background-color:LightGoldenRodYellow;
     }
 
     #bio {
@@ -534,10 +537,10 @@ body.homepage {
     a,
     button {
       text-decoration: none;
-      color: var(--text-color);
+      color: LightGoldenRodYellow;
 
       &:hover {
-        color: LightGoldenRodYellow;
+        color: var(--primary-color);
       }
     }
 
@@ -583,7 +586,6 @@ body.homepage {
     font-size: 1.15em;
     line-height: 1.5;
     color:LightGoldenRodYellow;
-    background-color:#182F1D;
     text-shadow: 0 0 6px #fff, 0 0 12px #fff, 0 0 24px steelblue, 0 0 48px steelblue;
   }
 }
