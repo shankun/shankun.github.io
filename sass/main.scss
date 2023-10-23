@@ -502,25 +502,17 @@ body.homepage {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-    }
-
-    #name {
       color:LightGoldenRodYellow;
-      background-color:#182F1D;
-      text-shadow: 0 0 6px #fff, 0 0 12px #fff, 0 0 24px steelblue, 0 0 48px steelblue;
+      text-shadow: 0 0 6px #182F1D, 0 0 16px #182F1D, 0 0 26px #182F1D, 0 0 36px #182F1D, 0 0 46px #182F1D, 0 0 56px #182F1D;
     }
 
     #id {
       margin-left: 0.5em;
       color: var(--primary-color);
-      background-color:LightGoldenRodYellow;
     }
 
     #bio {
       font-size: 0.85em;
-      color:LightGoldenRodYellow;
-      background-color:#182F1D;
-      text-shadow: 0 0 6px #fff, 0 0 12px #fff, 0 0 24px steelblue, 0 0 48px steelblue;
     }
   }
 
@@ -586,7 +578,7 @@ body.homepage {
     font-size: 1.15em;
     line-height: 1.5;
     color:LightGoldenRodYellow;
-    text-shadow: 0 0 6px #fff, 0 0 12px #fff, 0 0 24px steelblue, 0 0 48px steelblue;
+    text-shadow: 0 0 6px #182F1D, 0 0 16px #182F1D, 0 0 26px #182F1D, 0 0 36px #182F1D, 0 0 46px #182F1D, 0 0 56px #182F1D;
   }
 }
 
