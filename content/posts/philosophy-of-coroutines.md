@@ -11,7 +11,6 @@ tags = ["coroutines", "C++"]
 [extra]
 lang = "zh_CN"
 toc = true
-comment = false
 copy = true
 math = true
 mermaid = false
