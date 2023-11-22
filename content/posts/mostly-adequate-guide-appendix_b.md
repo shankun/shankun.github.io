@@ -29,7 +29,7 @@ most efficient implementation out there; they *solely serve an educational purpo
 In order to find structures that are more production-ready, have a peek at [folktale](http://folktale.origamitower.com/)
 or [fantasy-land](https://github.com/fantasyland).
 
-Note that some methods also refer to functions defined in the [Appendix A](../mostly-adequate-guide-appendix_a/)
+Note that some methods also refer to functions defined in the [Appendix A](../mostly-adequate-guide-appendix-a/)
 
 ## Compose
 

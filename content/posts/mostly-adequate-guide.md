@@ -140,9 +140,9 @@ This is the Simplified Chinese translation of *[mostly-adequate-guide](https://g
   * [大一统理论](../mostly-adequate-guide-ch13/#da-yi-tong-li-lun)
   * [群论还是范畴论](../mostly-adequate-guide-ch13/#qun-lun-huan-shi-fan-chou-lun)
   * [总结](../mostly-adequate-guide-ch13/#zong-jie)
-* [Appendix A: Essential Functions Support](../mostly-adequate-guide-appendix_a/)
-* [Appendix B: Algebraic Structures Support](../mostly-adequate-guide-appendix_b/)
-* [Appendix C: Pointfree Utilities](../mostly-adequate-guide-appendix_c/)
+* [Appendix A: Essential Functions Support](../mostly-adequate-guide-appendix-a/)
+* [Appendix B: Algebraic Structures Support](../mostly-adequate-guide-appendix-b/)
+* [Appendix C: Pointfree Utilities](../mostly-adequate-guide-appendix-c/)
 
 # 未来计划
 
