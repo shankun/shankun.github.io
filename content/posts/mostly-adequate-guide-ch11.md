@@ -214,8 +214,8 @@ const saveComment = compose(
 const eitherToMaybe = undefined
 ```
 
-[solution_a.js]("https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/solution_a.js")   
-[validation_a.js]("https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/validation_a.js")
+[solution_a.js](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/solution_a.js)   
+[validation_a.js](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/validation_a.js)
 
 ---
 
@@ -235,8 +235,8 @@ const findNameById = compose(
 )
 ```
 
-[solution_b.js]("https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/solution_b.js")   
-[validation_b.js]("https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/validation_b.js")
+[solution_b.js](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/solution_b.js)   
+[validation_b.js](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/validation_b.js)
 
 ---
 
@@ -257,5 +257,5 @@ const strToList = undefined
 const listToStr = undefined
 ```
 
-[solution_c.js]("https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/solution_c.js")   
-[validation_c.js]("https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/validation_c.js")
+[solution_c.js](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/solution_c.js)   
+[validation_c.js](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/validation_c.js)
