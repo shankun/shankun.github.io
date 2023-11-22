@@ -9,7 +9,7 @@ tags = ["programming", "javascript"]
 
 [extra]
 lang = "zh_CN"
-toc = false
+toc = true
 copy = true
 math = true
 mermaid = false
@@ -18,7 +18,7 @@ outdate_alert_days = 120
 display_tags = true
 truncate_summary = false
 +++
-[原文链接](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/ch8.md)
+[原文链接](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch08) &emsp;&emsp; [返回目录](../mostly-adequate-guide/#mu-lu)
 <!--more-->
 # 特百惠
 
@@ -26,7 +26,7 @@ truncate_summary = false
 
 ## 强大的容器
 
-<img src="images/jar.jpg" alt="http://blog.dwinegar.com/2011/06/another-jar.html" />
+{{ figure(src="/img/jar.jpg" alt="http://blog.dwinegar.com/2011/06/another-jar.html") }}
 
 我们已经知道如何书写函数式的程序了，即通过管道把数据在一系列纯函数间传递的程序。我们也知道了，这些程序就是声明式的行为规范。但是，控制流（control flow）、异常处理（error handling）、异步操作（asynchronous actions）和状态（state）呢？还有更棘手的作用（effects）呢？本章将对上述这些抽象概念赖以建立的基础作一番探究。
 
@@ -105,7 +105,7 @@ Container.of("bombs").map(concat(' away')).map(_.prop('length'))
 
 ## 薛定谔的 Maybe
 
-<img src="images/cat.png" alt="cool cat, need reference" />
+{{ figure(src="/img/cat.png" alt="cool cat, need reference") }}
 
 说实话 `Container` 挺无聊的，而且通常我们称它为 `Identity`，与 `id` 函数的作用相同（这里也是有数学上的联系的，我们会在适当时候加以说明）。除此之外，还有另外一种 functor，那就是实现了 `map` 函数的类似容器的数据类型，这种 functor 在调用 `map` 的时候能够提供非常有用的行为。现在让我们来定义一个这样的 functor。
 
@@ -240,7 +240,7 @@ getTwenty({ balance: 10.00});
 
 ## “纯”错误处理
 
-<img src="images/fists.jpg" alt="pick a hand... need a reference" />
+{{ figure(src="/img/fists.jpg" alt="pick a hand... need a reference") }}
 
 说出来可能会让你震惊，`throw/catch` 并不十分“纯”。当一个错误抛出的时候，我们没有收到返回值，反而是得到了一个警告！抛错的函数吐出一大堆的 0 和 1 作为盾和矛来攻击我们，简直就像是在反击输入值的入侵而进行的一场电子大作战。有了 `Either` 这个新朋友，我们就能以一种比向输入值宣战好得多的方式来处理错误，那就是返回一条非常礼貌的消息作为回应。我们来看一下：
 
@@ -363,7 +363,7 @@ zoltar({birthdate: 'balloons!'});
 
 （译者注：原标题是“Old McDonald had Effects...”，源于美国儿歌“Old McDonald Had a Farm”。）
 
-<img src="images/dominoes.jpg" alt="dominoes.. need a reference" />
+{{ figure(src="/img/dominoes.jpg" alt="dominoes.. need a reference") }}
 
 在关于纯函数的的那一章（即第 3 章）里，有一个很奇怪的例子。这个例子中的函数会产生副作用，但是我们通过把它包裹在另一个函数里的方式把它变得看起来像一个纯函数。这里还有一个类似的例子：
 
@@ -633,13 +633,13 @@ compLaw2(Container.of("Goodbye"));
 
 可能我们关于范畴的定义还是有点模糊。你可以把范畴想象成一个有着多个对象的网络，对象之间靠态射连接。那么 functor 可以把一个范畴映射到另外一个，而且不会破坏原有的网络。如果一个对象 `a` 属于源范畴 `C`，那么通过 functor `F` 把 `a` 映射到目标范畴 `D` 上之后，就可以使用 `F a` 来指代 `a` 对象（把这些字母拼起来是什么？！）。可能看图会更容易理解：
 
-<img src="images/catmap.png" alt="Categories mapped" />
+{{ figure(src="/img/catmap.png" alt="Categories mapped") }}
 
 比如，`Maybe` 就把类型和函数的范畴映射到这样一个范畴：即每个对象都有可能不存在，每个态射都有空值检查的范畴。这个结果在代码中的实现方式是用 `map` 包裹每一个函数，用 functor 包裹每一个类型。这样就能保证每个普通的类型和函数都能在新环境下继续使用组合。从技术上讲，代码中的 functor 实际上是把范畴映射到了一个包含类型和函数的子范畴（sub category）上，使得这些 functor 成为了一种新的特殊的 endofunctor。但出于本书的目的，我们认为它就是一个不同的范畴。
 
 可以用一张图来表示这种态射及其对象的映射：
 
-<img src="images/functormap.png" alt="functor diagram" />
+{{ figure(src="/img/functormap.png" alt="functor diagram") }}
 
 这张图除了能表示态射借助 functor `F` 完成从一个范畴到另一个范畴的映射之外，我们发现它还符合交换律，也就是说，顺着箭头的方向往前，形成的每一个路径都指向同一个结果。不同的路径意味着不同的行为，但最终都会得到同一个数据类型。这种形式化给了我们原则性的方式去思考代码——无须分析和评估每一个单独的场景，只管可以大胆地应用公式即可。来看一个具体的例子。
 
@@ -660,7 +660,7 @@ bottomRoute("hi");
 
 或者看图：
 
-<img src="images/functormapmaybe.png" alt="functor diagram 2" />
+{{ figure(src="/img/functormapmaybe.png" alt="functor diagram 2") }}
 
 根据所有 functor 都有的特性，我们可以立即理解代码，重构代码。
 

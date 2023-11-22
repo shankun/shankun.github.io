@@ -9,7 +9,7 @@ tags = ["programming", "javascript"]
 
 [extra]
 lang = "zh_CN"
-toc = false
+toc = true
 copy = true
 math = true
 mermaid = false
@@ -18,7 +18,7 @@ outdate_alert_days = 120
 display_tags = true
 truncate_summary = false
 +++
-[原文链接](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/ch12.md)
+[原文链接](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch12) &emsp;&emsp; [返回目录](../mostly-adequate-guide/#mu-lu)
 <!--more-->
 # 第 12 章：遍历
 

@@ -9,7 +9,7 @@ tags = ["programming", "javascript"]
 
 [extra]
 lang = "zh_CN"
-toc = false
+toc = true
 copy = true
 math = true
 mermaid = false
@@ -18,7 +18,7 @@ outdate_alert_days = 120
 display_tags = true
 truncate_summary = false
 +++
-[原文链接](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/ch9.md)
+[原文链接](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch09) &emsp;&emsp; [返回目录](../mostly-adequate-guide/#mu-lu)
 <!--more-->
 # Monad
 
@@ -56,7 +56,7 @@ Either.of("The past, present and future walk into a bar...").map(
 
 ## 混合比喻
 
-<img src="images/onion.png" alt="http://www.organicchemistry.com/wp-content/uploads/BPOCchapter6-6htm-41.png" />
+{{ figure(src="/imgsrc="images/onion.png" alt="http://www.organicchemistry.com/wp-content/uploads/BPOCchapter6-6htm-41.png") }}
 
 你看，除了太空墨西哥卷（如果你听说过这个传言的话）（译者注：此处的传言似乎是说一个叫 Chris Hadfield 的宇航员在国际空间站做墨西哥卷的事，[视频链接](https://www.youtube.com/watch?v=f8-UKqGZ_hs)），monad 还被喻为洋葱。让我以一个常见的场景来说明这点：
 
@@ -222,7 +222,7 @@ applyPreferences('preferences').unsafePerformIO();
 
 （译者注：此处标题原文是“My chain hits my chest”，是英国歌手 M.I.A 单曲 *Bad Girls* 的一句歌词。据说这首歌有体现女权主义。）
 
-<img src="images/chain.jpg" alt="chain" />
+{{ figure(src="/img/chain.jpg" alt="chain") }}
 
 你可能已经从上面的例子中注意到这种模式了：我们总是在紧跟着 `map` 的后面调用 `join`。让我们把这个行为抽象到一个叫做 `chain` 的函数里。
 
@@ -364,7 +364,7 @@ var upload = function(filename, callback) {
 
 这些定律表明了 monad 的嵌套本质，所以结合律关心的是如何让内层或外层的容器类型 `join`，然后取得同样的结果。用一张图来表示可能效果会更好：
 
-<img src="images/monad_associativity.png" alt="monad associativity law" />
+{{ figure(src="/img/monad_associativity.png" alt="monad associativity law") }}
 
 从左上角往下，先用 `join` 合并 `M(M(M a))` 最外层的两个 `M`，然后往右，再调用一次 `join`，就得到了我们想要的 `M a`。或者，从左上角往右，先打开最外层的 `M`，用 `map(join)` 合并内层的两个 `M`，然后再向下调用一次 `join`，也能得到 `M a`。不管是先合并内层还是先合并外层的 `M`，最后都会得到相同的 `M a`，所以这就是结合律。值得注意的一点是 `map(join) != join`。两种方式的中间步骤可能会有不同的值，但最后一个 `join` 调用后最终结果是一样的。
 
@@ -377,7 +377,7 @@ var upload = function(filename, callback) {
 
 这表明，对任意的 monad `M`，`of` 和 `join` 相当于 `id`。也可以使用 `map(of)` 由内而外实现相同效果。我们把这个定律叫做“三角同一律”（triangle identity），因为把它图形化之后就像一个三角形：
 
-<img src="images/triangle_identity.png" alt="monad identity law" />
+{{ figure(src="/img/triangle_identity.png" alt="monad identity law") }}
 
 如果从左上角开始往右，可以看到 `of` 的确把 `M a` 丢到另一个 `M` 容器里去了。然后再往下 `join`，就得到了 `M a`，跟一开始就调用 `id` 的结果一样。从右上角往左，可以看到如果我们通过 `map` 进到了 `M` 里面，然后对普通值 `a` 调用 `of`，最后得到的还是 `M (M a)`；再调用一次 `join` 将会把我们带回原点，即 `M a`。
 

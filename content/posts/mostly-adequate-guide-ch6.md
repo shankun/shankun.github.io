@@ -9,7 +9,7 @@ tags = ["programming", "javascript"]
 
 [extra]
 lang = "zh_CN"
-toc = false
+toc = true
 copy = true
 math = true
 mermaid = false
@@ -18,7 +18,7 @@ outdate_alert_days = 120
 display_tags = true
 truncate_summary = false
 +++
-[原文链接](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/ch6.md)
+[原文链接](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch06) &emsp;&emsp; [返回目录](../mostly-adequate-guide/#mu-lu)
 <!--more-->
 # 第 6 章: 示例应用
 
@@ -152,7 +152,7 @@ app("cats");
 
 这会调用 `url` 函数，然后把字符串传给 `getJSON` 函数。`getJSON` 已经局部应用了 `trace`，加载这个应用将会把请求的响应显示在 console 里。
 
-<img src="images/console_ss.png"/>
+{{ figure(src="/img/console_ss.png") }}
 
 我们想要从这个 json 里构造图片，看起来 src 都在 `items` 数组中的每个 `media` 对象的 `m` 属性上。
 
@@ -199,7 +199,7 @@ var app = _.compose(Impure.getJSON(renderImages), url);
 
 任务完成！
 
-<img src="images/cats_ss.png" />
+{{ figure(src="/img/cats_ss.png") }}
 
 下面是完整代码：
 

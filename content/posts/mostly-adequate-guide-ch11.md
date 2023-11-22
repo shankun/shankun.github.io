@@ -9,7 +9,7 @@ tags = ["programming", "javascript"]
 
 [extra]
 lang = "zh_CN"
-toc = false
+toc = true
 copy = true
 math = true
 mermaid = false
@@ -18,7 +18,7 @@ outdate_alert_days = 120
 display_tags = true
 truncate_summary = false
 +++
-[原文链接](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/ch11.md)
+[原文链接](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch11) &emsp;&emsp; [返回目录](../mostly-adequate-guide/#mu-lu)
 <!--more-->
 # 第 11 章：再转换一次，就很自然
 
@@ -60,7 +60,7 @@ const saveComment = compose(
 
 *Natural Transformations*是“functor 之间的态射”，就是，一个操作容器本身的函数。类型上来说，它是个函数`(Functor f, Functor g) => f a -> g a`。让这个函数特殊的是，在任何情况下，都不能得知 functor 中的内容。就像两个党派交换机密文件，都会把东西封在马尼拉纸信封里，戳上“最高机密”。这是一个结构上的操作。functor 外壳的变化。形式上，*Natural Transformations* 作用于如下功能：
 
-<img width=600 src="images/natural_transformation.png" alt="natural transformation diagram" />
+{{ figure(src="/img/natural_transformation.png" alt="natural transformation diagram" style="width: 600px") }}
 
 或者代码:
 
@@ -206,21 +206,16 @@ const saveComment = compose(
 [Chapter 12: Traversing the Stone](../mostly-adequate-guide-ch12/)
 
 ## 练习
-
-{% exercise %}  
+ 
 写一个 natural transformation 将`Either b a`转换到`Maybe a`
-
-{% initial src="./exercises/ch11/exercise_a.js#L3;" %}
 
 ```js
 // eitherToMaybe :: Either b a -> Maybe a
 const eitherToMaybe = undefined
 ```
 
-{% solution src="./exercises/ch11/solution_a.js" %}  
-{% validation src="./exercises/ch11/validation_a.js" %}  
-{% context src="./exercises/support.js" %}  
-{% endexercise %}
+[solution_a.js](src="https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/solution_a.js")   
+[validation_a.js](src="https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/validation_a.js")
 
 ---
 
@@ -229,10 +224,8 @@ const eitherToMaybe = undefined
 const eitherToTask = either(Task.rejected, Task.of)
 ```
 
-{% exercise %}  
 使用`eitherToTask`, 简化`findNameById`方法, 去掉嵌套的`Either`。
 
-{% initial src="./exercises/ch11/exercise_b.js#L6;" %}
 
 ```js
 // findNameById :: Number -> Task Error (Either Error User)
@@ -242,10 +235,8 @@ const findNameById = compose(
 )
 ```
 
-{% solution src="./exercises/ch11/solution_b.js" %}  
-{% validation src="./exercises/ch11/validation_b.js" %}  
-{% context src="./exercises/support.js" %}  
-{% endexercise %}
+[solution_b.js](src="https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/solution_b.js")   
+[validation_b.js](src="https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/validation_b.js")
 
 ---
 
@@ -255,11 +246,8 @@ const findNameById = compose(
 split :: String -> String -> [String]
 intercalate :: String -> [String] -> String
 ```
-
-{% exercise %}  
+ 
 写出 String 和 [Char]的 Isomorphic。
-
-{% initial src="./exercises/ch11/exercise_c.js#L8;" %}
 
 ```js
 // strToList :: String -> [Char]
@@ -269,7 +257,5 @@ const strToList = undefined
 const listToStr = undefined
 ```
 
-{% solution src="./exercises/ch11/solution_c.js" %}  
-{% validation src="./exercises/ch11/validation_c.js" %}  
-{% context src="./exercises/support.js" %}  
-{% endexercise %}
+[solution_c.js](src="https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/solution_c.js")   
+[validation_c.js](src="https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/exercises/ch11/validation_c.js")

@@ -9,7 +9,7 @@ tags = ["programming", "javascript"]
 
 [extra]
 lang = "zh_CN"
-toc = false
+toc = true
 copy = true
 math = true
 mermaid = false
@@ -18,7 +18,7 @@ outdate_alert_days = 120
 display_tags = true
 truncate_summary = false
 +++
-[原文链接](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/ch3.md)
+[原文链接](https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch03) &emsp;&emsp; [返回目录](../mostly-adequate-guide/#mu-lu)
 <!--more-->
 # 第 3 章：纯函数的好处
 
@@ -122,11 +122,11 @@ var immutableState = Object.freeze({
 
 换句话说，函数只是两种数值之间的关系：输入和输出。尽管每个输入都只会有一个输出，但不同的输入却可以有相同的输出。下图展示了一个合法的从 `x` 到 `y` 的函数关系；
 
-<img src="images/function-sets.gif" />（http://www.mathsisfun.com/sets/function.html）
+{{ figure(src="/img/function-sets.gif" via="http://www.mathsisfun.com/sets/function.html") }}
 
 相反，下面这张图表展示的就*不是*一种函数关系，因为输入值 `5` 指向了多个输出：
 
-<img src="images/relation-not-function.gif" />（http://www.mathsisfun.com/sets/function.html）
+{{ figure(src="/img/relation-not-function.gif" via="http://www.mathsisfun.com/sets/function.html) }}
 
 函数可以描述为一个集合，这个集合里的内容是 (输入, 输出) 对：`[(1,2), (3,6), (5,10)]`（看起来这个函数是把输入值加倍）。
 
@@ -136,7 +136,7 @@ var immutableState = Object.freeze({
 
 甚至一个以 `x` 为输入 `y` 为输出的函数曲线图：
 
-<img src="images/fn_graph.png" width="300" height="300" />
+{{ figure(src="/img/fn_graph.png" style="width: 300px height: 300px") }}
 
 如果输入直接指明了输出，那么就没有必要再实现具体的细节了。因为函数仅仅只是输入到输出的映射而已，所以简单地写一个对象就能“运行”它，使用 `[]` 代替 `()` 即可。
 
