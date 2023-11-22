@@ -19,7 +19,7 @@ display_tags = true
 truncate_summary = false
 +++
 
-This is the Simplified Chinese translation of *[mostly-adequate-guide](https://github.com/DrBoolean/mostly-adequate-guide)*, thank Professor [Franklin Risby](https://github.com/DrBoolean) for his great work!
+这是 *[mostly-adequate-guide](https://github.com/DrBoolean/mostly-adequate-guide)* 一书的简体中文翻译，原书作者是 [Franklin Risby教授](https://github.com/DrBoolean)，中译本来源：[github.com/llh911001/mostly-adequate-guide-chinese](https://github.com/llh911001/mostly-adequate-guide-chinese)
 <!--more-->
 {{ figure(src="/img/cover.png", style="height: 50%; width: 50%") }}
 
