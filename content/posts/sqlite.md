@@ -27,12 +27,12 @@ truncate_summary = false
 
 1. 从离线包web服务批量下载b3dm静态模型
 ```powershell
-&"C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python39_64\python.exe" .\downloader.py -p muping -d d:\work\2023\3dtilesDownloader\muping\
+&"D:\devenv\Python312\python.exe" .\downloader.py -p muping -d d:\work\2023\3dtilesDownloader\muping\
 ```
 
 2. 火鸟数据库提取到sqlite数据库
 ```powershell
-&"C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python39_64\python.exe" .\extract_fdb.py -p f:\离线包\HCityData\publish\muping\ -d d:\work\2023\3dtilesDownloader\muping\
+&"D:\devenv\Python312\python.exe" .\extract_fdb.py -p f:\离线包\HCityData\publish\muping\ -d d:\work\2023\3dtilesDownloader\muping\
 ```
 
 {% codeblock(name="extract_fdb.py") %}
