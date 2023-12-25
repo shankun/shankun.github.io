@@ -56,7 +56,7 @@ mac平台的adobe破解不出意外的话，应该是TNT team，谁也不知道�
 * https://www.digit77.com/
 
 
-补充：adobe 运营时提示盗版，可以在AdGuard里添加规则试试：  
+补充：adobe 运行时提示盗版，可以在AdGuard里添加规则试试：  
 ```
 regexp:\.adobe.*\.com$
 regexp:\.adobe.*\.io$
