@@ -1,5 +1,5 @@
 <figure>
-    <img src="{{ config.base_url }}{{ src }}" {% if style %} style="{{ style }}"{% endif %} {% if alt %} alt="{{ alt }}"{% endif %}>
+    <img {% if url %} src="{{ url }}"{% endif %} {% if src %} src="{{ config.base_url }}{{ src }}"{% endif %} {% if style %} style="{{ style }}"{% endif %} {% if alt %} alt="{{ alt }}"{% endif %}>
     {% if via %}
     <figcaption><a href="{{via}}">来源</a></figcaption>
     {% endif %}
