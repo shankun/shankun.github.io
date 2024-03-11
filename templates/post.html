@@ -47,7 +47,7 @@
 {% include "_header.html" %}
 <div id="wrapper">
   <div id="blank"></div>
-  <aside {% if config.extra.blur_effect %} class="blur" {% endif %}>
+  <aside>
     {% if page.extra.toc is defined %}{% set show_toc = page.extra.toc %}{% else %}{% set show_toc = config.extra.toc %}{% endif %}
     {% if show_toc and page.toc %}
     <nav>
@@ -101,7 +101,7 @@
           <div id="tags">
             {% for tag in page.taxonomies.tags -%}
             {% set tag_slugify = tag | slugify -%}
-            <a href="{{ config.base_url ~ '/tags/' ~ tag_slugify }}"><span>#</span>{{ tag }}</a>
+            <a class="instant" href="{{ config.base_url ~ '/tags/' ~ tag_slugify }}"><span>#</span>{{ tag }}</a>
             {%- endfor %}
           </div>
           {% endif %}
