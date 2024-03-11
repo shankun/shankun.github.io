@@ -4,14 +4,14 @@ function enableThemeToggle() {
   const preferDark = window.matchMedia("(prefers-color-scheme: dark)");
   function toggleTheme(theme) {
     if (theme == "dark") document.body.classList.add('dark'); else document.body.classList.remove('dark');
-    if (hlLink) hlLink.href = `${location.origin}/hl-${theme}.css`;
+    if (hlLink) hlLink.href = themeToggle.baseURI.substring(0, themeToggle.baseURI.indexOf('/posts/')) +`/hl-${theme}.css`;
     themeToggle.innerHTML = theme == "dark" ? themeToggle.dataset.sunIcon : themeToggle.dataset.moonIcon;
     sessionStorage.setItem("theme", theme);
     toggleGiscusTheme(theme);
   }
   function toggleGiscusTheme(theme) {
     const iframe = document.querySelector('iframe.giscus-frame');
-    if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: `${location.origin}/giscus_${theme}.css` } } }, 'https://giscus.app');
+    if (iframe) iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: iframe.baseURI.substring(0, iframe.baseURI.indexOf('/posts/')) +`/giscus_${theme}.css` } } }, 'https://giscus.app');
   }
   function initGiscusTheme(evt) {
     if (evt.origin !== 'https://giscus.app') return;
