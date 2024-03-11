@@ -590,6 +590,8 @@ body.homepage {
       flex-direction: column;
       justify-content: space-around;
       line-height: 1.5;
+      color:LightGoldenRodYellow;
+      text-shadow: 0 0 6px #182F1D, 0 0 16px #182F1D, 0 0 26px #182F1D, 0 0 36px #182F1D, 0 0 46px #182F1D, 0 0 56px #182F1D;
     }
     
     #name, #id {
@@ -669,6 +671,7 @@ body.homepage {
     padding: 0 15px 3em;
     font-size: 1em;
     line-height: var(--homepage-line-height);
+    color:LightGoldenRodYellow;
     @media (max-width: 425px) {
       & {
         padding-bottom: 1.5em;
