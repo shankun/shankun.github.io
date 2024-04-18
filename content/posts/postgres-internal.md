@@ -150,7 +150,7 @@ The above query’s startup cost is `0.00` and total cost is `145.00`.
 **Sequential Scan Estimation**:  
 $$ 
 \begin{aligned}
-'run\\_cost' &= 'cpu\\_run\\_cost'+'disk\\_run\\_cost'\\\\ &= (cpu\\_tuple\\_cost+cpu\\_operator\\_cost)\times N_{tuplue}+seq\\_page\\_cost\times N_{page},
+\\'run\\_cost\\' &= \\'cpu\\_run\\_cost\\'+\\'disk\\_run\\_cost\\'\\\\ &= (cpu\\_tuple\\_cost+cpu\\_operator\\_cost)\times N_{tuplue}+seq\\_page\\_cost \times N_{page},
 \end{aligned} 
 $$
 
