@@ -23,13 +23,13 @@ truncate_summary = false
 <!--more-->
 Postgres database cluster is not like many database servers. It hosts on single server and contains multiple databases. Each database contains multiple indexes, tables and other objects. Databases, tables, indexes files are all objects, and are uniquely identified with an **OID**.
 
-{{ figure(src="/img/storage.png", style="height: 50%; width: 50%") }}
+{{ figure(src="/img/storage.png") }}
 
 Its storage is like a file system. All the files except for tablespace are stored in base directory, specified by `$PGDATA`. Database subdirectories are named as their **OIDs**.
 
 Inside database, tables and index files are initially 1GB file named as their **reffilenode**, or serveral 1GB files named as `reffilenode.x` if it gets larger size.
 
-{{ figure(src="/img/reffilenode.jpg", style="height: 50%; width: 50%") }}
+{{ figure(src="/img/reffilenode.jpg") }}
 
 Besides, each table also associates with two files with suffix **_fsm** and **_vm**. They are free space map and visibility map.
 
@@ -38,14 +38,14 @@ Besides, each table also associates with two files with suffix **_fsm** and **_v
 
 # Table Storage
 
-{{ figure(src="/img/heap_file.jpg", style="height: 50%; width: 50%") }}
+{{ figure(src="/img/heap_file.jpg") }}
 
 # Indexes
 * Hash Index
 
 * Bitmap Index
-// for this table
 ```bash
+// for this table
 ----------------
 row_id row_val
 1				25
@@ -60,6 +60,7 @@ row_id row_val
 ```
 
 * B+Tree Index
+
 References:
 
 * [Indexes in PostgreSQL — 1](https://postgrespro.com/blog/pgsql/3994098)
@@ -73,7 +74,7 @@ References:
 
 # Process 
 
-{{ figure(src="/img/processes.jpg", style="height: 50%; width: 50%") }}
+{{ figure(src="/img/processes.jpg") }}
 
 Postgres has following main processes:
 
@@ -83,32 +84,32 @@ Postgres has following main processes:
 
 * **Background process**:
 
-{{ figure(src="/img/bg_processes.jpg", style="height: 50%; width: 50%") }}
+{{ figure(src="/img/bg_processes.jpg") }}
 
 * **Background worker process**: like background process, but is created by user to do background works.
 
 # Memory
 
-{{ figure(src="/img/memory.png", style="height: 50%; width: 50%") }}
+{{ figure(src="/img/memory.png") }}
 
 * Local Memory Area: Each backend process allocate a local memory area for query processing
-  * Work-mem: for sorting tuples for ORDER_BY and DISTINCT, and for joining tables for merge join and hash join
-  * maintainence work memory: for maintenance operations: VACUUM, REINDEX
-  * Temp buffer: store temporary tables
+  * **Work-mem**: for sorting tuples for **ORDER_BY** and **DISTINCT**, and for joining tables for **merge join** and **hash join**
+  * **maintainence work memory**: for maintenance operations: **VACUUM**, **REINDEX**
+  * **Temp buffer**: store temporary tables
 * Shared Memory Area
-  * shared buffer pool
-  * WAL buffer: is a buffering area of the WAL data before writing to a persistent storage.
-  * commit log: keeps the state of all transactions for the concurrency control mechanism
+  * **shared buffer pool**
+  * **WAL buffer**: is a buffering area of the WAL data before writing to a persistent storage.
+  * **commit log**: keeps the state of all transactions for the concurrency control mechanism
 
 # Query Processing
 
-{{ figure(src="/img/query.png", style="height: 50%; width: 50%") }}
+{{ figure(src="/img/query.png") }}
 
 * Parser
 
 It is like a frontend of compilers, creating a syntax tree and checking syntax.
 
-{{ figure(src="/img/parser.png", style="height: 50%; width: 50%") }}
+{{ figure(src="/img/parser.png") }}
 
 * Analyzer
 
@@ -128,14 +129,13 @@ Postgres query optimization is based on cost, and costs are indicators to compar
 
 * **Start up**
 
-Start up is the cost expended before the first tuple is fetched. For example, index scan spends start up costs to read index files.
+  Start up is the cost expended before the first tuple is fetched. For example, index scan spends start up costs to read index files.
 
 * **Run**
 
-The cost of fetching all tuples.
+  The cost of fetching all tuples.
 
-* **Total**:
-Start up + Run
+* **Total**:Start up + Run
 
 ```bash
 testdb=# EXPLAIN SELECT * FROM tbl;
@@ -153,14 +153,15 @@ $$
 'run\_cost' &= 'cpu\_run\_cost'+'disk\_run\_cost'\\\\ &= (cpu\_tuple\_cost+cpu\_operator\_cost)\times N_{tuplue}+seq\_page\_cost\times N_{page},
 \end{aligned}
 $$
+
 **Index Scan Estimation**:
 
 * **startup cost**
 
 Although postgres have multiple index, they all use cost_index to estimate. $H_{index}$ is the height of the index tree.
 
-$ 'start-up\ cost'=\{ceil(\log_2(N_{index,tuple}))+(H_{index}+1)\times50\} \times cpu\_operator\_cost, $
+$ 'start\text{-}up\ cost'=\{ceil(\log_2(N_{index,tuple}))+(H_{index}+1)\times50\} \times cpu\_operator\_cost, $
 
 * **run cost**
 
-{{ figure(src="/img/index_run_cost.png", style="height: 50%; width: 50%") }}
+{{ figure(src="/img/index_run_cost.png") }}
