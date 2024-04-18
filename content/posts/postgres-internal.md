@@ -12,7 +12,7 @@ lang = "zh_CN"
 toc = false
 copy = true
 comment = false
-math = false
+math = true
 mermaid = false
 outdate_alert = false
 outdate_alert_days = 120
@@ -156,14 +156,9 @@ $$
 
 **Index Scan Estimation**:
 
-* **startup cost**
+* **startup cost**  
+  Although postgres have multiple index, they all use cost_index to estimate. $H_{index}$ is the height of the index tree.  
+  $'start\text{-}up\ cost'=\{ceil(\log_2(N_{index,tuple}))+(H_{index}+1)\times50\} \times cpu\_operator\_cost, $
 
-Although postgres have multiple index, they all use cost_index to estimate. $H_{index}$ is the height of the index tree.  
-
-$$ 
-'start\text{-}up\ cost'=\{ceil(\log_2(N_{index,tuple}))+(H_{index}+1)\times50\} \times cpu\_operator\_cost, 
-$$
-
-* **run cost**
-
-{{ figure(src="/img/index_run_cost.png") }}
+* **run cost**  
+  {{ figure(src="/img/index_run_cost.png") }}
