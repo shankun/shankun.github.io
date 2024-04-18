@@ -147,20 +147,22 @@ testdb=# EXPLAIN SELECT * FROM tbl;
 
 The above query’s startup cost is `0.00` and total cost is `145.00`.
 
-**Sequential Scan Estimation**:
-$$
+**Sequential Scan Estimation**:  
+$$ 
 \begin{aligned}
 'run\_cost' &= 'cpu\_run\_cost'+'disk\_run\_cost'\\\\ &= (cpu\_tuple\_cost+cpu\_operator\_cost)\times N_{tuplue}+seq\_page\_cost\times N_{page},
-\end{aligned}
+\end{aligned} 
 $$
 
 **Index Scan Estimation**:
 
 * **startup cost**
 
-Although postgres have multiple index, they all use cost_index to estimate. $H_{index}$ is the height of the index tree.
+Although postgres have multiple index, they all use cost_index to estimate. $H_{index}$ is the height of the index tree.  
 
-$ 'start\text{-}up\ cost'=\{ceil(\log_2(N_{index,tuple}))+(H_{index}+1)\times50\} \times cpu\_operator\_cost, $
+$$ 
+'start\text{-}up\ cost'=\{ceil(\log_2(N_{index,tuple}))+(H_{index}+1)\times50\} \times cpu\_operator\_cost, 
+$$
 
 * **run cost**
 
