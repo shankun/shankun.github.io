@@ -75,7 +75,7 @@ truncate_summary = false
 *   [第七部](/blog/posts/jade-dynasty-vol7-part1/)
 *   [第八部](/blog/posts/jade-dynasty-vol8-part1/)
 
-{{ figure(src="/img/碧瑶.webp", caption="诛仙", alt="碧瑶") }}
+{{ figure(src="/img/碧瑶.webp", caption="碧瑶", alt="鬼王宗") }}
 
 第十二章 重逢 {#chapter12}
 -------------------------------------------------

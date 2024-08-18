@@ -70,6 +70,8 @@ truncate_summary = false
 *   [第七部](/blog/posts/jade-dynasty-vol7-part1/)
 *   [第八部](/blog/posts/jade-dynasty-vol8-part1/)
 
+{{ figure(src="/img/zhuxian_p4.jpg", caption="三生七世，永堕阎罗，只为情故，虽死不悔", alt="碧瑶") }}
+
 
 第三十一章 密谋 {#chapter31}
 -------------------------------------------------

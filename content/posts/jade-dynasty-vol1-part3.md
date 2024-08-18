@@ -75,7 +75,7 @@ truncate_summary = false
 *   [第七部](/blog/posts/jade-dynasty-vol7-part1/)
 *   [第八部](/blog/posts/jade-dynasty-vol8-part1/)
 
-{{ figure(src="/img/luxueqi_p1.webp", caption="小竹峰", alt="陆雪琪") }}
+{{ figure(src="/img/luxueqi_p1.webp", caption="陆雪琪", alt="小竹峰") }}
 
 
 第二十三章 神剑 {#chapter23}

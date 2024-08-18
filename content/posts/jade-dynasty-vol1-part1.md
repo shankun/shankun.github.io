@@ -75,7 +75,7 @@ truncate_summary = false
 *   [第七部](/blog/posts/jade-dynasty-vol7-part1/)
 *   [第八部](/blog/posts/jade-dynasty-vol8-part1/)
 
-{{ figure(src="/img/zhuxian_p1.jpeg", caption="大竹峰", alt="田灵儿") }}
+{{ figure(src="/img/zhuxian_p1.jpeg", caption="田灵儿", alt="大竹峰") }}
 
 
 序章 {#prologue}
