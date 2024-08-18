@@ -67,14 +67,16 @@ truncate_summary = false
     *   [第四十二章 滴血洞](#chapter42)
     *   [第四十三章 天书](#chapter43)
     *   [第四十四章 金铃](#chapter44)
-*   [第二部](/jade-dynasty-vol2-part1/)
-*   [第三部](/jade-dynasty-vol3/)
-*   [第四部](/jade-dynasty-vol4/)
-*   [第五部](/jade-dynasty-vol5/)
-*   [第六部](/jade-dynasty-vol6/)
-*   [第七部](/jade-dynasty-vol7/)
-*   [第八部](/jade-dynasty-vol8/)
+*   [第二部](/blog/posts/jade-dynasty-vol2-part1/)
+*   [第三部](/blog/posts/jade-dynasty-vol3-part1/)
+*   [第四部](/blog/posts/jade-dynasty-vol4-part1/)
+*   [第五部](/blog/posts/jade-dynasty-vol5-part1/)
+*   [第六部](/blog/posts/jade-dynasty-vol6-part1/)
+*   [第七部](/blog/posts/jade-dynasty-vol7-part1/)
+*   [第八部](/blog/posts/jade-dynasty-vol8-part1/)
 
+
+{{ figure(src="/img/zhuxian_p4.jpg", caption="诛仙剑", alt="殉情") }}
 
 第三十四章 古窟 {#chapter34}
 -------------------------------------------------

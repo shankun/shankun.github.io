@@ -67,13 +67,16 @@ truncate_summary = false
     *   [第四十二章 滴血洞](/blog/posts/jade-dynasty-vol1-part4/#chapter42)
     *   [第四十三章 天书](/blog/posts/jade-dynasty-vol1-part4/#chapter43)
     *   [第四十四章 金铃](/blog/posts/jade-dynasty-vol1-part4/#chapter44)
-*   [第二部](/jade-dynasty-vol2-part1/)
-*   [第三部](/jade-dynasty-vol3/)
-*   [第四部](/jade-dynasty-vol4/)
-*   [第五部](/jade-dynasty-vol5/)
-*   [第六部](/jade-dynasty-vol6/)
-*   [第七部](/jade-dynasty-vol7/)
-*   [第八部](/jade-dynasty-vol8/)
+*   [第二部](/blog/posts/jade-dynasty-vol2-part1/)
+*   [第三部](/blog/posts/jade-dynasty-vol3-part1/)
+*   [第四部](/blog/posts/jade-dynasty-vol4-part1/)
+*   [第五部](/blog/posts/jade-dynasty-vol5-part1/)
+*   [第六部](/blog/posts/jade-dynasty-vol6-part1/)
+*   [第七部](/blog/posts/jade-dynasty-vol7-part1/)
+*   [第八部](/blog/posts/jade-dynasty-vol8-part1/)
+
+{{ figure(src="/img/zhuxian_p1.jpeg", caption="大竹峰", alt="田灵儿") }}
+
 
 序章 {#prologue}
 ------------
@@ -345,6 +348,7 @@ truncate_summary = false
 “你竟是青云门下！”
 
 ※※※
+
 <span id="footnote-p2">注1：文中普智所诵之“奄、嘛、呢、叭、弥、哞！”，即有名的“六字大明咒”，佛家经典中又称“观音灵感真言”。佛经中载：此真言通天地造化，诵之可脱尘埃，涤心镜，至大欢喜极乐境界。是佛家中最著名的经典真言咒文之一。</span>
 
 现将全文附录如下：
