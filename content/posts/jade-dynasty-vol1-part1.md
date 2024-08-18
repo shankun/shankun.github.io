@@ -77,9 +77,9 @@ truncate_summary = false
 
 {{ figure(src="/img/zhuxian_p1.jpeg", caption="田灵儿", alt="大竹峰") }}
 
-[萧鼎《诛仙（新修版）》精校全本.txt](/doc/萧鼎《诛仙（新修版）》精校全本.txt)
+[萧鼎《诛仙（新修版）》精校全本.txt](/blog/doc/萧鼎《诛仙（新修版）》精校全本.txt)
 
-[萧鼎《诛仙第二部》.txt](/doc/萧鼎《诛仙第二部》.txt)
+[萧鼎《诛仙第二部》.txt](/blog/doc/萧鼎《诛仙第二部》.txt)
 
 
 序章 {#prologue}
