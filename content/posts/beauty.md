@@ -4,7 +4,7 @@ date = 2023-11-07T22:50:00+08:00
 draft = false
 
 [taxonomies]
-categories = ["美"]
+categories = ["艺术"]
 tags = ["图片"]
 
 [extra]
