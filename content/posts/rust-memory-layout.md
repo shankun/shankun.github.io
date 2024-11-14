@@ -63,12 +63,12 @@ truncate_summary = false
 > 就行了。
 
 如果【对齐位数alignment】与【存储宽度size】在编译时已知，那么该类型`<T: Sized>`就是【静态分派】Fixed Sized Type。于是，  
-* 类型的对齐位数可由 [std::mem::align_of::<T>()](https://doc.rust-lang.org/std/mem/fn.align_of.html) 读取  
-* 类型的存储宽度可由 [std::mem::size_of::<T>()](https://doc.rust-lang.org/std/mem/fn.size_of.html) 读取  
+* 类型的对齐位数可由 std::mem::[align_of](https://doc.rust-lang.org/std/mem/fn.align_of.html)::<T>() 读取  
+* 类型的存储宽度可由 std::mem::[size_of](https://doc.rust-lang.org/std/mem/fn.size_of.html)::<T>() 读取  
 
 若【对齐位数alignment】与【存储宽度size】在运行时才可计算知晓，那么该类型<T: ?Sized>就是【动态分派】Dynamic Sized Type。于是，  
-* 值的对齐位数可由 [std::mem::align_of_val::<T>(&T)](https://doc.rust-lang.org/std/mem/fn.align_of_val.html) 读取  
-* 值的存储宽度可由 [std::mem::size_of_val::<T>(&T)](https://doc.rust-lang.org/std/mem/fn.size_of_val.html) 读取  
+* 值的对齐位数可由 std::mem::[align_of_val](https://doc.rust-lang.org/std/mem/fn.align_of_val.html)::<T>(&T) 读取  
+* 值的存储宽度可由 std::mem::[size_of_val](https://doc.rust-lang.org/std/mem/fn.size_of_val.html)::<T>(&T) 读取  
 
 ### 存储宽度size的对齐计算
 若变量值的有效数据长度`payload_size`正好是该变量类型【对齐位数alignment】的自然数倍，那么该变量的【存储宽度size】就是它的【有效数据长度payload_size】。即，`size = payload_size;`。
