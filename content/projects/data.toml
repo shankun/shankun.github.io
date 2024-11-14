@@ -1,6 +1,6 @@
 [[project]]
 name = "文件上传"
-desc = "利用asio实现TCP协议的多线程文件上传工具，带GTK+的界面"
+desc = "利用asio实现TCP协议的多线程文件上传工具，带GTK+的界面。"
 tags = ["C++", "asio"]
 links = [
   { name = "FileUploader", url = "https://github.com/shankun/FileUploader" },
@@ -8,8 +8,16 @@ links = [
 
 [[project]]
 name = "个人网站"
-desc = "zola + serene 静态网站，部署在阿里云ECS，由drogon驱动，同时通过Github Actions自动部署到Github Pages"
+desc = "zola + serene 静态网站，部署在Azure VM，同时通过Github Actions自动部署到Github Pages。"
 tags = ["GithubPages", "website"]
 links = [
   { name = "shankun.github.io", url = "https://github.com/shankun/shankun.github.io" },
+]
+
+[[project]]
+name = "Facade"
+desc = "基于drogon框架的RESTful web服务端，实现了今日热榜爬虫，驱动个人静态网站。"
+tags = ["drogon", "backend"]
+links = [
+  { name = "Facade", url = "https://github.com/shankun/facade" },
 ]
