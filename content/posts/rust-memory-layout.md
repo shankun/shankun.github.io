@@ -10,7 +10,7 @@ tags = ["Rust"]
 
 [extra]
 lang = "zh_CN"
-toc = false
+toc = true
 copy = true
 comment = false
 math = false
@@ -41,7 +41,7 @@ truncate_summary = false
       * 仅能保存于偶数位的内存地址address上。
       * 存储宽度size也得是4字节 — 从有效长度3字节到存储宽度4字节的扩容过程被称作“对齐”。
     * 存储宽度size等于0字节的变量值可接受任意正整数作为其对齐位数alignment — 惯例是1字节。
-2. 对齐位数alignment必须是2的自然数次幂。即，alignment = 2 ^ N且N是≼ 29的自然数。
+2. 对齐位数alignment必须是2的自然数次幂。即，`alignment = 2 ^ N`且N是≼ 29的自然数。
 3. 存储宽度size是有效数据长度加对齐填充位数的总和字节数 — 这一点可能有点儿反直觉。
 4. address，size与alignment的计量单位都是“字节”。
 
@@ -52,8 +52,7 @@ truncate_summary = false
 
 文字抽象，图直观。一图抵千词，请看图
 
-{{ figure(src="/img/273108307-8733e366-cf62-4642-a763-cc7a393029d2.png", caption="Memory Alignment", alt="Memory Alignment") }}   
-___   
+{{ figure(src="/img/273108307-8733e366-cf62-4642-a763-cc7a393029d2.png", caption="", alt="Memory Alignment") }}   
 
 > 延伸理解：借助于对齐位数，物理上一维的线性内存被重构为了逻辑上N维的存储空间。不严谨地讲，一个数据类型 ➜ 对应一个对齐位数值 ➜ 按一个【单位一】将内存空间均分一遍 ➜ 形成一个仅存储该数据类型值（且只存在于算法与逻辑中）的维度空间。然后，在保存该数据类型的新值时，只要
 
@@ -64,12 +63,13 @@ ___
 > 就行了。
 
 如果【对齐位数alignment】与【存储宽度size】在编译时已知，那么该类型`<T: Sized>`就是【静态分派】Fixed Sized Type。于是，  
-* 类型的对齐位数可由[std::mem::align_of::<T>()](https://doc.rust-lang.org/std/mem/fn.align_of.html)读取
-* 类型的存储宽度可由[std::mem::size_of::<T>()](https://doc.rust-lang.org/std/mem/fn.size_of.html)读取
+* 类型的对齐位数可由 [std::mem::align_of::<T>()](https://doc.rust-lang.org/std/mem/fn.align_of.html) 读取  
+* 类型的存储宽度可由 [std::mem::size_of::<T>()](https://doc.rust-lang.org/std/mem/fn.size_of.html) 读取  
 
 若【对齐位数alignment】与【存储宽度size】在运行时才可计算知晓，那么该类型<T: ?Sized>就是【动态分派】Dynamic Sized Type。于是，  
-* 值的对齐位数可由[std::mem::align_of_val::<T>(&T)](https://doc.rust-lang.org/std/mem/fn.align_of_val.html)读取
-* 值的存储宽度可由[std::mem::size_of_val::<T>(&T)](https://doc.rust-lang.org/std/mem/fn.size_of_val.html)读取  
+* 值的对齐位数可由 [std::mem::align_of_val::<T>(&T)](https://doc.rust-lang.org/std/mem/fn.align_of_val.html) 读取  
+* 值的存储宽度可由 [std::mem::size_of_val::<T>(&T)](https://doc.rust-lang.org/std/mem/fn.size_of_val.html) 读取  
+
 ### 存储宽度size的对齐计算
 若变量值的有效数据长度`payload_size`正好是该变量类型【对齐位数alignment】的自然数倍，那么该变量的【存储宽度size】就是它的【有效数据长度payload_size】。即，`size = payload_size;`。
 
@@ -211,7 +211,7 @@ struct Data {
 * （参见C17规范的第6.7.2.1节）无字段结构体会导致标准C程序出现U.B.，除非安装与开启GNU的C扩展。
 * Cpp编译器会强制给无字段结构体安排一个字节宽度，除非该数据结构被显式地标记为[[no_unique_address]]。
 
-以费内存为代价，C内存布局赋予Rust数据结构的另一个“超能力”就是：“仅通过变换【指针类型】就可将内存上的一段数据重新解读为另一个数据类型的值”。比如，void * / std::ffi::c_void被允许指向任意数据类型的变量值[例程](https://github1s.com/stuartZhang/my_rs_ideas_playground/blob/main/src/bin/ffi-closure-callback.rs#L83)。但在Rust内存布局下，需要调用专门的标准库函数[`std::intrinsics::transmute()`](https://doc.rust-lang.org/std/intrinsics/fn.transmute.html)才能达到相同的目的。
+以费内存为代价，C内存布局赋予Rust数据结构的另一个“超能力”就是：“仅通过变换【指针类型】就可将内存上的一段数据重新解读为另一个数据类型的值”。比如，void * / std::ffi::c_void被允许指向任意数据类型的变量值[例程](https://github1s.com/stuartZhang/my_rs_ideas_playground/blob/main/src/bin/ffi-closure-callback.rs#L83)。但在Rust内存布局下，需要调用专门的标准库函数[std::intrinsics::transmute()](https://doc.rust-lang.org/std/intrinsics/fn.transmute.html)才能达到相同的目的。
 
 除了上述鲜明的差别之外，C与Rust内存布局都允许【对齐位数alignment】参数被微调，而不一定总是全部字段alignment中的最大值。这包括但不限于：
 
@@ -223,8 +223,7 @@ struct Data {
 struct.size = struct.fields().map(|field| field.size).sum()  // 第一步，求全部字段宽度值之和
                         .next_multiple_of(struct.alignment); // 第二步，求既大于等于【宽度值之和】，又是`struct.alignment`自然数倍的最小数值
 ```
-相较于Rust内存布局优化算法的错综复杂，我好似只能讲清楚C内存布局的始末：
-
+相较于Rust内存布局优化算法的错综复杂，我好似只能讲清楚C内存布局的始末：  
 首先，结构体自身的对齐位数struct.alignment就是全部字段对齐位数field.alignment中的最大值。
 ```
 struct.alignment = struct.fields().map(|field| field.alignment).max();
@@ -417,6 +416,7 @@ LightEnum.size = discriminant.size;           // 存储宽度
 |unsigned short / short|	#[repr(u16)] / #[repr(i16)]
 |unsigned int / int|	#[repr(u32)] / #[repr(i32)]
 |unsigned long / long|	#[repr(u64)] / #[repr(i64)]
+
 举个例子，
 ```
 use ::std::mem;
@@ -453,7 +453,7 @@ println!("alignment = {1}; size = {0}", mem::size_of::<Example6>(), mem::align_o
 
 文字描述着实有些晦涩与抽象。边看下图，边再体会。一图抵千词！（关键还是对union数据类型的理解）
 
-{{ figure(src="/img/273214529-a5b7ce90-8847-43fe-a1b0-2ea37a3515a2.png", caption="Rust 重装枚举类", alt="Rust Unions") }}
+{{ figure(src="/img/273214529-a5b7ce90-8847-43fe-a1b0-2ea37a3515a2.png", caption="", alt="Rust Unions") }}
 
 上图中有三个很细节的知识点容易被读者略过，所以在这里特意强调一下：
 
@@ -503,7 +503,7 @@ println!("alignment = {1}; size = {0}", mem::size_of::<Example8>(), mem::align_o
 
 文字描述着实有些晦涩与抽象。边看下图，边对比上图，边体会。一图抵千词！
 
-{{ figure(src="/img/273236126-7e6f67cc-656e-4900-9a81-42beaa4a5c20.png", caption="Rust 枚举内存对齐", alt="Rust 枚举内存对齐") }}
+{{ figure(src="/img/273236126-7e6f67cc-656e-4900-9a81-42beaa4a5c20.png", caption="", alt="Rust 枚举内存对齐") }}
 
 由上图可见，C与【数字类型】的混合内存布局
 
@@ -552,7 +552,7 @@ println!("alignment = {1}; size = {0}", mem::size_of::<Example10>(), mem::align_
 ### 仅【数字类型·内存布局】的“重装”枚举类
 若不以C加【数字类型】的混合内存布局来组织枚举类enum Example9的数据存储，而仅保留【数字类型】内存布局，那么上例中被降维后的【联合体】与【结构体】就都会缺省采用Rust内存布局。参见下图：
 
-{{ figure(src="/img/273246490-918b74d7-d055-4035-ba64-7d6e3982b122.png", caption="Rust 枚举内存对齐", alt="Rust 枚举内存对齐") }}
+{{ figure(src="/img/273246490-918b74d7-d055-4035-ba64-7d6e3982b122.png", caption="", alt="Rust 枚举内存对齐") }}
 
 补充于最后，思维活跃的读者这次千万别想太多了。没有`#[repr(transparent, u16)]`的内存布局组合，因为【透明·内存布局】向来都是“孤来孤往”的。
 
@@ -647,7 +647,7 @@ align(x)与packed(x)修饰符的实参是【目标】字节数，而不是【增
 
 其次，上调枚举类的对齐位数也会触发“内存布局重构”的负作用。编译器会效仿[Newtypes 设计模式](https://rustcc.cn/article?id=a9198cb9-f16c-4e2b-b30e-6c63eed1cd52)重构`#[repr(align(x))] enum`枚举类为嵌套包含了enum的`#[repr(align(x))] struct`元组结构体。一图抵千词，请参阅下图。
 
-{{ figure(src="/img/273348511-9cb69706-5231-4961-890a-48c0a5c9616d.png", caption="Newtypes 设计模式", alt="Newtypes 设计模式") }}
+{{ figure(src="/img/273348511-9cb69706-5231-4961-890a-48c0a5c9616d.png", caption="", alt="Newtypes 设计模式") }}
 
 由上图可见，在内存布局重构之后，C内存布局继续保留在枚举类上，而align(16)修饰符仅对外层的结构体有效。所以，从底层实现来讲，枚举类是不支持内存布局微调的，仅能借助外层的Newtypes数据结构间接限定。
 
