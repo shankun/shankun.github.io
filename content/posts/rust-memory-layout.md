@@ -62,15 +62,14 @@ truncate_summary = false
 
 > 就行了。
 
-如果【对齐位数alignment】与【存储宽度size】在编译时已知，那么该类型`<T: Sized>`就是【静态分派】Fixed Sized Type。于是，  
-* 类型的对齐位数可由 std::mem::[align_of](https://doc.rust-lang.org/std/mem/fn.align_of.html)::<T>() 读取  
-* 类型的存储宽度可由 std::mem::[size_of](https://doc.rust-lang.org/std/mem/fn.size_of.html)::<T>() 读取  
+如果【对齐位数alignment】与【存储宽度size】在编译时已知，那么该类型`<T: Sized>`就是【静态分派】Fixed Sized Type。于是，
+* 类型的对齐位数可由 std::mem::[align_of](https://doc.rust-lang.org/std/mem/fn.align_of.html)::<T>() 读取
+* 类型的存储宽度可由 std::mem::[size_of](https://doc.rust-lang.org/std/mem/fn.size_of.html)::<T>() 读取
 
 若【对齐位数alignment】与【存储宽度size】在运行时才可计算知晓，那么该类型<T: ?Sized>就是【动态分派】Dynamic Sized Type。于是，
 
-* 值的对齐位数可由 std::mem::[align_of_val](https://doc.rust-lang.org/std/mem/fn.align_of_val.html)::<T>(&T) 读取  
-* 值的存储宽度可由 std::mem::[size_of_val](https://doc.rust-lang.org/std/mem/fn.size_of_val.html)::<T>(&T) 读取  
-
+* 值的对齐位数可由 std::mem::[align_of_val](https://doc.rust-lang.org/std/mem/fn.align_of_val.html)::<T>(&T) 读取
+* 值的存储宽度可由 std::mem::[size_of_val](https://doc.rust-lang.org/std/mem/fn.size_of_val.html)::<T>(&T) 读取
 
 ### 存储宽度size的对齐计算
 
@@ -86,7 +85,7 @@ variable.size = variable.payload_size.next_multiple_of(variable.alignment);
 
 ## 二、简单内存布局
 ### 基本数据类型
-基本数据类型包括`bool`，`u8`，`i8`，`u16`，`i16`，`u32`，`i32`，`u64`，`i64`，`u128`，`i128`，`usize`，`isize`，`f32`，`f64`和`char`。它们的内存布局在不同型号的设备上略有差异。  
+基本数据类型包括`bool`，`u8`，`i8`，`u16`，`i16`，`u32`，`i32`，`u64`，`i64`，`u128`，`i128`，`usize`，`isize`，`f32`，`f64`和`char`。它们的内存布局在不同型号的设备上略有差异。
 * 在非x86设备上，存储宽度size = 对齐位数alignment（即，倍数N = 1）
 * 在x86设备上，因为设备允许的最大对齐位数不能超过4字节，所以alignment ≼ 4 Byte
   * u64与f64的size = alignment * 2（即，N = 2）。
