@@ -127,24 +127,4 @@ truncate_summary = false
 Footnotes {#footnotes}
 ---------
 
-With any luck, you should be able to read the footnotes of this article in place, by clicking on the superscript footnote number or the corresponding numbered tab on the right side of the page.
 
-But just in case the CSS didn’t do the right thing, here’s the text of all the footnotes again:
-
-[1.](#footnote-win32-read-write) For example, in the Win32 API, if you have a bidirectional file handle such as a serial port or a named pipe, and you need to simultaneously try to read and write it, I think it really _is_ the least inconvenient thing to have two threads, one trying to read the handle and one trying to write it. The alternative `GetOverlappedResult` approach ended up being _more_ painful when I tried it.
-
-[2.](#footnote-python-coroutines) I talk about generators as if they were _the_ coroutine system in Python, but in fact, they’re one of two: Python _also_ has a [completely different kind of thing](https://docs.python.org/3/reference/compound_stmts.html#coroutines) that it actually uses the name ‘coroutine’ for, in which function definitions start with `async def` and suspend with `await`. I’ve never played with those, because generators are easier to get started with and have scratched my generalised coroutine itch well enough. But at some point I should at least give them a look.
-
-[3.](#footnote-knuth) In TAOCP, one of Knuth’s suggestions for a producer/consumer chain is that you might be flexible enough to make a runtime decision as to _whether_ to run both parts interleaved as coroutines, or whether to run them sequentially storing the intermediate data on disk, depending on how much memory you have. I suspect this was a more vital concern in the 1970s.
-
-[4.](#footnote-pairwise) The non-cyclic version of this is also useful. As of Python 3.10 that _is_ in the standard library, as `itertools.pairwise`, although I’m going to have to keep writing it by hand until I can rely on Python 3.10 or better being widespread enough. But as far as I know the cyclic version still isn’t in `itertools`.
-
-[5.](#footnote-StopIteration) Incidentally, yes, I know, there’s another special case that my code doesn’t handle: if the input iterator has _no_ values, then the example version of `cyclic_pairs` shown here will raise `StopIteration`, when perhaps you’d prefer it to silently generate an empty output list. Before Python 3.7 this happened automatically, because `StopIteration` was handled differently; in many of my own use cases I never pass an empty list anyway. But if you were writing a version general enough to go in `itertools`, you’d probably want to check for that case properly.
-
-[6.](#footnote-if-for-while) In my fantasy programming language, this would _actually_ be how the standard control structures were implemented. The only primitives in the language itself would be ‘goto’ and coroutines. _All_ block-structured control flow commands, even the standard things like ‘if’, ‘for’ and ‘while’, would be defined in the standard prelude as small coroutines of this kind, implemented in terms of ‘goto’. Then they wouldn’t need to be keywords!
-
-[7.](#footnote-self-modifying-code) In fact, Knuth does this by self-modifying code. The memory location where you save the return address is actually the destination-address field _within the jump instruction_ that performs the return!
-
-[8.](#footnote-stack-grows-downwards) For the sake of not using too many words, I’ll assume the most common convention for stack layout, which is that the stack grows downwards in memory: pushes make SP smaller, pops make it bigger, and when you call a subroutine, its stack frame is below yours. If you’re used to one of the rare architectures that does things the other way up, just turn your head upside down while reading this section.
-
-[9.](#footnote-riscos) RISC OS is still around the last time I heard, and will run on a Raspberry Pi in particular. I have no idea if it’s _still_ cooperatively multithreaded, though. Wikipedia seems to say it is, but its most recent citation is from 2003…
