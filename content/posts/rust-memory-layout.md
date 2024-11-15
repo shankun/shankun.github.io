@@ -63,6 +63,7 @@ truncate_summary = false
 > 就行了。
 
 如果【对齐位数alignment】与【存储宽度size】在编译时已知，那么该类型`<T: Sized>`就是【静态分派】Fixed Sized Type。于是，
+
 ・类型的对齐位数可由 std::mem::[align_of](https://doc.rust-lang.org/std/mem/fn.align_of.html)::<T>() 读取
 
 ・类型的存储宽度可由 std::mem::[size_of](https://doc.rust-lang.org/std/mem/fn.size_of.html)::<T>() 读取
@@ -628,8 +629,10 @@ println!("alignment = {1}; size = {0}", mem::size_of::<Example13<String>>(), mem
 * `#[repr(C, u16)]`是合法的
 * `#[repr(C, transparent)]`和`#[repr(transparent, u16)]`就会导致语编译失败
 ### 其它类型的内存布局
-* trait Object与由胖指针&dyn Trait/Box<dyn Trait>引用的变量值的【内存布局】相同。
-* 闭包Closure没有固定的【内存布局】。
+・trait Object与由胖指针&dyn Trait/Box<dyn Trait>引用的变量值的【内存布局】相同。
+
+・闭包Closure没有固定的【内存布局】。
+
 ### 微调内存布局
 只有Rust与C内存布局具备微调能力，且只能修改【对齐位数alignment】参数值。另外，不同数据结构可做的微调操作也略有不同：
 
