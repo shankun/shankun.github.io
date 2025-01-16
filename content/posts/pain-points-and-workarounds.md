@@ -52,7 +52,7 @@ pub fn main() {
 ```
 
 以上代码编译后会报错:
-```shell
+```txt
 error[E0282]: type annotations needed
   --> src/main.rs:14:9
    |
@@ -112,7 +112,7 @@ async fn foo() {
 ```
 
 不出所料，错误如期而至:
-```shell
+```txt
 error: future cannot be sent between threads safely
   --> src/main.rs:17:18
    |
@@ -176,7 +176,7 @@ enum Recursive {
 ```
 
 这是典型的[动态大小类型](../advance/custom-type.md#动态大小类型)，它的大小会无限增长，因此编译器会直接报错:
-```shell
+```txt
 error[E0733]: recursion in an `async fn` requires boxing
  --> src/lib.rs:1:22
   |
@@ -210,7 +210,7 @@ trait Test {
 ```
 
 运行后报错:
-```shell
+```txt
 error[E0706]: functions in traits cannot be declared `async`
  --> src/main.rs:5:5
   |

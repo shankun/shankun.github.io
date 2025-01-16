@@ -257,7 +257,7 @@ fn main() {
 ```
 
 这里，我们在`hello_world`异步函数中先调用了另一个异步函数`hello_cat`，然后再输出`hello, world!`，看看运行结果：
-```console
+```txt
 warning: unused implementer of `futures::Future` that must be used
  --> src/main.rs:6:5
   |
@@ -289,7 +289,7 @@ fn main() {
 ```
 
 为`hello_cat()`添加上`.await`后，结果立刻大为不同:
-```console
+```txt
 hello, kitty!
 hello, world!
 ```

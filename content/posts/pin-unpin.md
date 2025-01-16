@@ -208,7 +208,7 @@ fn main() {
 ```
 
 输出非常正常：
-```console
+```txt
 a: test1, b: test1
 a: test2, b: test2
 ```
@@ -331,7 +331,7 @@ pub fn main() {
 ```
 
 注意到之前的粗体字了吗？是的，Rust 并不是在运行时做这件事，而是在编译期就完成了，因此没有额外的性能开销！来看看报错:
-```shell
+```txt
 error[E0277]: `PhantomPinned` cannot be unpinned
    --> src/main.rs:47:43
     |

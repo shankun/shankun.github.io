@@ -80,7 +80,7 @@ async fn borrow_x(x: &u8) -> u8 { *x }
 ```
 
 以上代码会报错，因为 `x` 的生命周期只到 `bad` 函数的结尾。 但是 `Future` 显然会活得更久：
-```shell
+```txt
 error[E0597]: `x` does not live long enough
  --> src/main.rs:4:14
   |
