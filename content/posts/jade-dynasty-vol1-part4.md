@@ -76,7 +76,7 @@ truncate_summary = false
 *   [第八部](/blog/posts/jade-dynasty-vol8-part1/)
 
 
-{{ figure(src="/img/zhuxian_p4.jpg", caption="陆雪琪", alt="青云门") }}
+{{ figure(src="/img/陆雪琪.jpg", caption="陆雪琪", alt="青云门") }}
 
 第三十四章 古窟 {#chapter34}
 -------------------------------------------------
