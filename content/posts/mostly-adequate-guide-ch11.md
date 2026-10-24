@@ -60,7 +60,7 @@ const saveComment = compose(
 
 *Natural Transformations*是“functor 之间的态射”，就是，一个操作容器本身的函数。类型上来说，它是个函数`(Functor f, Functor g) => f a -> g a`。让这个函数特殊的是，在任何情况下，都不能得知 functor 中的内容。就像两个党派交换机密文件，都会把东西封在马尼拉纸信封里，戳上“最高机密”。这是一个结构上的操作。functor 外壳的变化。形式上，*Natural Transformations* 作用于如下功能：
 
-{{ figure(src="/img/natural_transformation.png" alt="natural transformation diagram" style="width: 600px") }}
+{{ <figure src="/img/natural_transformation.png" alt="natural transformation diagram" style="width: 600px" /> }}
 
 或者代码:
 

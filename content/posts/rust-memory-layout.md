@@ -52,7 +52,7 @@ truncate_summary = false
 
 文字抽象，图直观。一图抵千词，请看图
 
-{{ figure(src="/img/273108307-8733e366-cf62-4642-a763-cc7a393029d2.png", caption="", alt="Memory Alignment") }}   
+{{ <figure src="/img/273108307-8733e366-cf62-4642-a763-cc7a393029d2.png" caption="" alt="Memory Alignment" /> }}   
 
 > 延伸理解：借助于对齐位数，物理上一维的线性内存被重构为了逻辑上N维的存储空间。不严谨地讲，一个数据类型 ➜ 对应一个对齐位数值 ➜ 按一个【单位一】将内存空间均分一遍 ➜ 形成一个仅存储该数据类型值（且只存在于算法与逻辑中）的维度空间。然后，在保存该数据类型的新值时，只要
 
@@ -458,7 +458,7 @@ println!("alignment = {1}; size = {0}", mem::size_of::<Example6>(), mem::align_o
 
 文字描述着实有些晦涩与抽象。边看下图，边再体会。一图抵千词！（关键还是对union数据类型的理解）
 
-{{ figure(src="/img/273214529-a5b7ce90-8847-43fe-a1b0-2ea37a3515a2.png", caption="", alt="Rust Unions") }}
+{{ <figure src="/img/273214529-a5b7ce90-8847-43fe-a1b0-2ea37a3515a2.png" caption="" alt="Rust Unions" /> }}
 
 上图中有三个很细节的知识点容易被读者略过，所以在这里特意强调一下：
 
@@ -508,7 +508,7 @@ println!("alignment = {1}; size = {0}", mem::size_of::<Example8>(), mem::align_o
 
 文字描述着实有些晦涩与抽象。边看下图，边对比上图，边体会。一图抵千词！
 
-{{ figure(src="/img/273236126-7e6f67cc-656e-4900-9a81-42beaa4a5c20.png", caption="", alt="Rust 枚举内存对齐") }}
+{{ <figure src="/img/273236126-7e6f67cc-656e-4900-9a81-42beaa4a5c20.png" caption="" alt="Rust 枚举内存对齐" /> }}
 
 由上图可见，C与【数字类型】的混合内存布局
 
@@ -557,7 +557,7 @@ println!("alignment = {1}; size = {0}", mem::size_of::<Example10>(), mem::align_
 ### 仅【数字类型·内存布局】的“重装”枚举类
 若不以C加【数字类型】的混合内存布局来组织枚举类enum Example9的数据存储，而仅保留【数字类型】内存布局，那么上例中被降维后的【联合体】与【结构体】就都会缺省采用Rust内存布局。参见下图：
 
-{{ figure(src="/img/273246490-918b74d7-d055-4035-ba64-7d6e3982b122.png", caption="", alt="Rust 枚举内存对齐") }}
+{{ <figure src="/img/273246490-918b74d7-d055-4035-ba64-7d6e3982b122.png" caption="" alt="Rust 枚举内存对齐" /> }}
 
 补充于最后，思维活跃的读者这次千万别想太多了。没有`#[repr(transparent, u16)]`的内存布局组合，因为【透明·内存布局】向来都是“孤来孤往”的。
 
@@ -654,7 +654,7 @@ align(x)与packed(x)修饰符的实参是【目标】字节数，而不是【增
 
 其次，上调枚举类的对齐位数也会触发“内存布局重构”的负作用。编译器会效仿[Newtypes 设计模式](https://rustcc.cn/article?id=a9198cb9-f16c-4e2b-b30e-6c63eed1cd52)重构`#[repr(align(x))] enum`枚举类为嵌套包含了enum的`#[repr(align(x))] struct`元组结构体。一图抵千词，请参阅下图。
 
-{{ figure(src="/img/273348511-9cb69706-5231-4961-890a-48c0a5c9616d.png", caption="", alt="Newtypes 设计模式") }}
+{{ <figure src="/img/273348511-9cb69706-5231-4961-890a-48c0a5c9616d.png" caption="" alt="Newtypes 设计模式" /> }}
 
 由上图可见，在内存布局重构之后，C内存布局继续保留在枚举类上，而align(16)修饰符仅对外层的结构体有效。所以，从底层实现来讲，枚举类是不支持内存布局微调的，仅能借助外层的Newtypes数据结构间接限定。
 

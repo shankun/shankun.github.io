@@ -2,7 +2,7 @@
 
 {% block page %}post{% endblock page %}
 {% block lang -%}
-{%- set blog_section_path = config.extra.blog_section_path | trim_start_matches(pat="/") -%}
+{%- set blog_section_path = config.extra.blog_section_path | trim_start(pat="/") -%}
 {%- set section_md_path = blog_section_path ~ "/_index.md" -%}
 {%- set section = get_section(path=section_md_path, metadata_only=true) -%}
 {%- if page.extra.lang %}{{page.extra.lang}}{% elif section.extra.lang %}{{section.extra.lang}}{% else %}{{page.lang}}{% endif -%}
@@ -20,8 +20,8 @@
 {% endblock desc %}
 
 {% block head %}
-{% if config.markdown.highlight_theme == "css" %}
-<link id="hl" rel="stylesheet" type="text/css" href="{{ config.base_url ~ '/hl-light.css' }}" />
+{% if config.markdown.highlighting.style == "class" %}
+<link id="hl" rel="stylesheet" type="text/css" href="{{ config.base_url ~ '/giallo-light.css' }}" />
 {% endif %}
 {% if page.extra.math %}
 <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
@@ -125,7 +125,7 @@
         {% if page.extra.truncate_summary is defined %}{% set truncate_summary = page.extra.truncate_summary %}{% elif config.extra.truncate_summary is defined %}{% set truncate_summary = config.extra.truncate_summary %}{% else %}{% set truncate_summary = false %}{% endif %}
 
         {% if truncate_summary == true and page.summary %}
-          {{ page.content | trim_start_matches(pat=page.summary) | safe }}
+          {{ page.content | trim_start(pat=page.summary) | safe }}
         {% else %}
           {{ page.content | safe }}
         {% endif %}

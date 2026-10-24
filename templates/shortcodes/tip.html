@@ -1,3 +1,4 @@
+{% component tip(header="") %}
 <blockquote class="callout tip">
     {% set icon = load_data(path="static/icon/tip.svg") %}
     <div class="icon">
@@ -10,3 +11,4 @@
         {{ body | markdown | safe }}
     </div>
 </blockquote>
+{% endcomponent %}

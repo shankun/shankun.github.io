@@ -1,9 +1,3 @@
-<figure>
-    <img {% if url %} src="{{ url }}"{% endif %} {% if src %} src="{{ config.base_url }}{{ src }}"{% endif %} {% if style %} style="{{ style }}"{% endif %} {% if alt %} alt="{{ alt }}"{% endif %}>
-    {% if via %}
-    <figcaption><a href="{{via}}">来源</a></figcaption>
-    {% endif %}
-    {% if caption %}
-    <figcaption>{{ caption }}</figcaption>
-    {% endif %}
-</figure>
+{% component figure(src="", caption="", alt="", via="", style="", url="", @config) %}
+<figure><img{% if url %} src="{{ url }}"{% endif %}{% if src %} src="{{ config.base_url }}{{ src }}"{% endif %}{% if style %} style="{{ style }}"{% endif %}{% if alt %} alt="{{ alt }}"{% endif %}>{% if via %}<figcaption><a href="{{ via }}">来源</a></figcaption>{% endif %}{% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}</figure>
+{% endcomponent %}

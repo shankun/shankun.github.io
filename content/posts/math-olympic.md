@@ -21,29 +21,29 @@ truncate_summary = false
 +++
 
 <!--more-->
-{{ figure(src="/img/小升初数学选拔题.jpeg", caption="小升初数学选拔题", alt="小升初数学选拔题") }}
+{{ <figure src="/img/小升初数学选拔题.jpeg" caption="小升初数学选拔题" alt="小升初数学选拔题" /> }}
 
 <br/>
 
-{{ figure(src="/img/学而思四年级第二轮奥数题8.jpg", caption="学而思四年级第二轮奥数题8", alt="学而思四年级第二轮奥数题8") }}
+{{ <figure src="/img/学而思四年级第二轮奥数题8.jpg" caption="学而思四年级第二轮奥数题8" alt="学而思四年级第二轮奥数题8" /> }}
 <br/>
 
-{{ figure(src="/img/学而思四年级第二轮奥数题9.jpg", caption="学而思四年级第二轮奥数题9", alt="学而思四年级第二轮奥数题9") }}
+{{ <figure src="/img/学而思四年级第二轮奥数题9.jpg" caption="学而思四年级第二轮奥数题9" alt="学而思四年级第二轮奥数题9" /> }}
 
 <br/>
 
-{{ figure(src="/img/学而思四年级第二轮奥数题10.jpg", caption="学而思四年级第二轮奥数题10", alt="学而思四年级第二轮奥数题10") }}
+{{ <figure src="/img/学而思四年级第二轮奥数题10.jpg" caption="学而思四年级第二轮奥数题10" alt="学而思四年级第二轮奥数题10" /> }}
 <br/>
 
-{{ figure(src="/img/学而思四年级第二轮奥数题11.jpg", caption="学而思四年级第二轮奥数题11", alt="学而思四年级第二轮奥数题11") }}
+{{ <figure src="/img/学而思四年级第二轮奥数题11.jpg" caption="学而思四年级第二轮奥数题11" alt="学而思四年级第二轮奥数题11" /> }}
 <br/>
 
-{{ figure(src="/img/学而思四年级第二轮奥数题12.jpg", caption="学而思四年级第二轮奥数题12", alt="学而思四年级第二轮奥数题12") }}
+{{ <figure src="/img/学而思四年级第二轮奥数题12.jpg" caption="学而思四年级第二轮奥数题12" alt="学而思四年级第二轮奥数题12" /> }}
 <br/>
 
-{{ figure(src="/img/学而思四年级第二轮奥数题13.jpg", caption="学而思四年级第二轮奥数题13", alt="学而思四年级第二轮奥数题13") }}
+{{ <figure src="/img/学而思四年级第二轮奥数题13.jpg" caption="学而思四年级第二轮奥数题13" alt="学而思四年级第二轮奥数题13" /> }}
 <br/>
 
-{{ figure(src="/img/学而思四年级第二轮奥数题14.jpg", caption="学而思四年级第二轮奥数题14", alt="学而思四年级第二轮奥数题14") }}
+{{ <figure src="/img/学而思四年级第二轮奥数题14.jpg" caption="学而思四年级第二轮奥数题14" alt="学而思四年级第二轮奥数题14" /> }}
 <br/>
 

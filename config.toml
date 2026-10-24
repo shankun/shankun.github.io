@@ -19,18 +19,18 @@ feed_filenames = ["feed.xml"]             # The file name of feed, "feed.xml" / 
 taxonomies = [{ name = "tags" }, { name = "categories" }]
 
 [markdown]
-highlight_code = true
-highlight_theme = "css"
-extra_syntaxes_and_themes = ["highlight_themes"]
-highlight_themes_css = [
-    { theme = "serene-light", filename = "hl-light.css"},
-    { theme = "serene-dark", filename = "hl-dark.css"},
-]
 render_emoji = false
 external_links_target_blank = false
 external_links_no_follow = true
 external_links_no_referrer = true
 smart_punctuation = false
+
+# Zola 0.22+ uses Giallo. Class CSS is emitted as giallo-light.css / giallo-dark.css.
+# serene-light / serene-dark were TextMate themes and are no longer loadable.
+[markdown.highlighting]
+style = "class"
+light_theme = "one-light"
+dark_theme = "one-dark-pro"
 
 [slugify]
 paths = "on"

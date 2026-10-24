@@ -21,6 +21,6 @@ truncate_summary = false
 +++
 
 <!--more-->
-{{ figure(src="/img/rust-memory-container-cs.png", caption="Memory Container", alt="Rust Memory Container") }}   
+{{ <figure src="/img/rust-memory-container-cs.png" caption="Memory Container" alt="Rust Memory Container" /> }}   
 ___   
-{{ figure(src="/img/rust-container-cheat-sheet.png", caption="Rust Container Cheat Sheet", alt="Rust Container Cheat Sheet") }}
+{{ <figure src="/img/rust-container-cheat-sheet.png" caption="Rust Container Cheat Sheet" alt="Rust Container Cheat Sheet" /> }}

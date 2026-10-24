@@ -1,3 +1,4 @@
+{% component question(header="") %}
 <blockquote class="callout question">
     {% set icon = load_data(path="static/icon/question.svg") %}
     <div class="icon">
@@ -10,3 +11,4 @@
         {{ body | markdown | safe }}
     </div>
 </blockquote>
+{% endcomponent %}

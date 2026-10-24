@@ -11,16 +11,21 @@
         <span class="wrap left fold">{{ config.extra.nav_wrapper_left }}</span>
         {% set_global is_taxonomies_path = false %}
         {% for taxonomy in config.taxonomies %}
-          {% if current_path is starting_with("/" ~ taxonomy.name)%}
+          {% if current_path is starting_with(pat="/" ~ taxonomy.name)%}
             {% set_global is_taxonomies_path = true %}
           {% endif %}
         {% endfor %}
-        {% set site_sections = config.extra.sections | filter(attribute="is_external", value=false) %}
+        {% set_global site_sections = [] %}
+        {% for item in config.extra.sections %}
+          {% if not item.is_external %}
+            {% set_global site_sections = [...site_sections, item] %}
+          {% endif %}
+        {% endfor %}
         {% for section in site_sections %}
           {% set should_fold = false %}
           {% if is_taxonomies_path and section.path == config.extra.blog_section_path %}
             {% set should_fold = false %}
-          {% elif not current_path is starting_with(section.path) %}
+          {% elif not current_path is starting_with(pat=section.path) %}
             {% set should_fold = true %}
           {% endif %}
           <a class="instant {% if should_fold %}fold{% endif %}" href="{{ config.base_url }}{{ section.path }}">{{ section.name }}</a>
@@ -37,7 +42,7 @@
       {% set blog_section_path = config.extra.blog_section_path %}
       {% endif %}
 
-      {% if blog_section_path is defined and section.path is starting_with(blog_section_path) %}
+      {% if blog_section_path is defined and section is defined and section.path is starting_with(pat=blog_section_path) %}
       {% set rss_icon = load_data(path="static/icon/rss.svg") %}
       {% if section.generate_feed %}
         {% set_global rss_path = blog_section_path ~ "/" ~ config.feed_filename %}
@@ -57,10 +62,10 @@
         {{ moon_icon | safe }}
       </button>
 
-      {% if blog_section_path is defined and section.path is starting_with(blog_section_path) %}
+      {% if blog_section_path is defined and section is defined and section.path is starting_with(pat=blog_section_path) %}
       {% set toc_icon = load_data(path="static/icon/toc.svg") %}
-      {% if page.extra.toc is defined %}{% set show_toc = page.extra.toc %}{% else %}{% set show_toc = config.extra.toc %}{% endif %}
-      {% if show_toc and page %}
+      {% if page is defined and page.extra.toc is defined %}{% set show_toc = page.extra.toc %}{% else %}{% set show_toc = config.extra.toc %}{% endif %}
+      {% if show_toc and page is defined %}
       <button id="toc-toggle" aria-label="table of content">
         {{ toc_icon | safe }}
       </button>
@@ -70,7 +75,7 @@
   </div>
 </header>
 
-{% if blog_section_path is defined and section.path is starting_with(blog_section_path) %}
+{% if blog_section_path is defined and section is defined and section.path is starting_with(pat=blog_section_path) %}
 {% if section.generate_feed or config.generate_feed %}
 {% set link = config.base_url ~ rss_path %}
 <dialog id="rss-mask">

@@ -21,4 +21,4 @@ truncate_summary = false
 +++
 
 <!--more-->
-{{ figure(src="/img/七日悠.jpg", caption="七日悠", alt="七日悠") }}
+{{ <figure src="/img/七日悠.jpg" caption="七日悠" alt="七日悠" /> }}

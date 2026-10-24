@@ -49,7 +49,7 @@ truncate_summary = false
 *   [Conclusion](#conclusion)
 *   [Footnotes](#footnotes)
 
-Introduction {#intro}
+Introduction {% raw %}{#intro}{% endraw %}
 ------------
 
 I’ve been a huge fan of coroutines since the mid-1990s.
@@ -72,7 +72,7 @@ It turned out that I did. So this article presents my ‘philosophy of coroutine
 
 But it discusses coroutines as a general concept, not specific to their implementation in any particular language. So where I present code snippets, they’ll be in whatever language is convenient to the example, or even in pure pseudocode.
 
-Why I’m so enthusiastic about coroutines {#awesome}
+Why I’m so enthusiastic about coroutines {% raw %}{#awesome}{% endraw %}
 ----------------------------------------
 
 Go on then, why _do_ I like coroutines so much?
@@ -81,11 +81,11 @@ Well, from first principles, there are two possibilities. Either it’s because 
 
 I can think of arguments for both of those positions, but I don’t think I have the self-awareness to decide which is more significant. So I’ll just present both sets of arguments, and let you make up your own mind about whether you end up also thinking they’re awesome.
 
-### The objective view: what makes them useful? {#objective}
+### The objective view: what makes them useful? {% raw %}{#objective}{% endraw %}
 
 To answer ‘what makes coroutines useful?’, it’s useful to start by deciding what we’re _comparing_ them to. I can’t answer ‘why is a coroutine more useful than _X?_’ without knowing what _X_ we’re talking about. And there’s more than one choice.
 
-#### Versus explicit state machines {#vs-state-machines}
+#### Versus explicit state machines {% raw %}{#vs-state-machines}{% endraw %}
 
 Two decades ago, when I wrote ‘[Coroutines in C](https://www.chiark.greenend.org.uk/~sgtatham/coroutines.html)’, I included an explanation of why coroutines are useful, based on the idea that the alternative was to write an ordinary function containing an explicit state machine.
 
@@ -178,7 +178,7 @@ Coroutines give you greater freedom to choose the structure of each part of your
 
 _Coroutines mean never having to turn your code inside out._
 
-#### Versus conventional threads {#vs-threads}
+#### Versus conventional threads {% raw %}{#vs-threads}{% endraw %}
 
 In the 1990s and early 2000s, that was the only argument I felt I needed in favour of coroutines. But now it’s 2023, and coroutines have another competitor: multithreading.
 
@@ -215,13 +215,13 @@ So _I_ still prefer coroutines to threads. But I have to acknowledge that my rea
 
 (However, this discussion is all about _pre-emptive_ threads. _Cooperative_ threads which yield to each other explicitly are a different matter, and I’ll talk about those [later](#cothreads) as well.)
 
-### The subjective view: why do _I_ like them so much? {#subjective}
+### The subjective view: why do _I_ like them so much? {% raw %}{#subjective}{% endraw %}
 
 This is already the kind of essay where I acknowledge my own bias. So I should also admit the possibility that it’s not so much that coroutines are objectively amazing, but rather, that they appealed especially strongly to _me personally_ for some reason that doesn’t apply to everybody.
 
 I have a couple of theories about what that reason might be, if there is one.
 
-#### “Teach the student when the student is ready” {#student-ready}
+#### “Teach the student when the student is ready” {% raw %}{#student-ready}{% endraw %}
 
 One possibility is that the concept was presented to me at exactly the right stage in my education.
 
@@ -237,7 +237,7 @@ Also, by that time, I’d probably have thought of some actual advantages to the
 
 So perhaps it’s just that coroutines hit me at precisely my moment of peak frustration with exactly the problem they solve, and that’s why I adopted them with so much enthusiasm.
 
-#### They suit my particular idea of code clarity {#clarity}
+#### They suit my particular idea of code clarity {% raw %}{#clarity}{% endraw %}
 
 When you look at an existing piece of code, there are two different ways you might want to understand it.
 
@@ -261,14 +261,14 @@ Again, my preference skews toward the former. I value the ability to make my own
 
 (However, that’s only an argument against coroutines as long as they _aren’t_ the orthodoxy. With more mainstream adoption, perhaps this argument is weakening. Generators in Python are _definitely_ mainstream now: I’ve occasionally had a code reviewer tell me to use them _more!_)
 
-Techniques for getting the most out of coroutines {#technique}
+Techniques for getting the most out of coroutines {% raw %}{#technique}{% endraw %}
 -------------------------------------------------
 
 Of course, another reason why one person might find a language feature more useful than someone else is that they’re better at using it: better at spotting cases where it’s useful, better at getting the most out of it when they do use it. And let’s not forget the skill of _avoiding_ using it when it _isn’t_ useful, so that you don’t get annoyed by situations where it’s not really a good fit.
 
 Here’s a collection of my thoughts on when and how to use coroutines for best effect.
 
-### When to use coroutines, and when not to {#when}
+### When to use coroutines, and when not to {% raw %}{#when}{% endraw %}
 
 My first general piece of advice is: _don’t be all-or-nothing about it_. Coroutines are useful in many situations, but they’re not the best tool for _every_ job.
 
@@ -282,13 +282,13 @@ Coroutines are useful when successive calls to a function need to behave differe
 
 On the other hand, some things just _don’t need_ to be coroutines. If a function needs to do basically the same thing every time, you _could_ write it as a coroutine anyway, containing nothing but an infinite ‘while true: do thing’ loop, but there wouldn’t be any real point. That’s just boilerplate that makes simple code more complicated for the sake of it. In that situation, don’t bother!
 
-### Types of code that might usefully become coroutines {#use-cases}
+### Types of code that might usefully become coroutines {% raw %}{#use-cases}{% endraw %}
 
 Just waving my hands and saying ‘spot things that look like control flow’ isn’t the most helpful advice in the world, of course! So in this next section I’ll mention some things I’ve found them useful for in the past.
 
 In coming up with the list, I found it convenient to categorise coroutines according to whether they yield to get inputs or to produce output or both, and to what other pieces of code.
 
-#### Output only: generators {#generator}
+#### Output only: generators {% raw %}{#generator}{% endraw %}
 
 One of the simplest kinds of coroutine, and perhaps the most familiar to at least Python programmers,<sup id='footnote-python-coroutines'>2</sup> is the kind that yields values to a consumer, but its input comes either from the parameters it was passed on creation, or from ordinary function calls.
 
@@ -339,7 +339,7 @@ One special case of this, where you _really can’t_ compute the entire intermed
 
 In any case, the takeaway from this is: any time you see a function that constructs and returns a list, if it functions in more or less ‘append only’ mode (that is, it builds the list up from start to finish, and doesn’t have to refer back to an unlimited number of the existing items to decide what to append next), it’s worth considering whether it would be clearer written as a generator-style coroutine instead, if your language makes it convenient.
 
-#### Input only: consumers {#consumer}
+#### Input only: consumers {% raw %}{#consumer}{% endraw %}
 
 If I’ve had a section for output-only coroutines, then obviously I need a section for input-only ones.
 
@@ -353,7 +353,7 @@ More importantly, the consumer end of the data pipeline is probably the one that
 
 So I think it generally makes sense to have the producer end of the system be an easily discardable coroutine, and the consumer end be ‘normal’ code. That way, if the producer encounters an exceptional condition and can’t carry on producing data (e.g. a file it was reading from ended abruptly, or contained invalid data), the consumer can catch the exception and ensure it does something sensible, like switching to a fallback strategy, or deleting its half-written output file, or at the very least producing a useful error message. You probably don’t want it to be silently discarded.
 
-#### Separate input and output: adapters {#adapter}
+#### Separate input and output: adapters {% raw %}{#adapter}{% endraw %}
 
 Once you’ve connected a producer to a consumer, the next natural step is to have something in the middle be both at once, consuming values from one side and emitting them to the other side.
 
@@ -381,7 +381,7 @@ What makes this a natural use case for generators? It’s the special cases at t
 
 Adapters like this fit nicely into the ‘Unix pipeline’ model, as I described a couple of sections earlier. So they’re still only a performance improvement, in space and maybe time, over doing things the pedestrian way with intermediate lists.
 
-#### Input and output talking to the same entity: protocols {#protocol}
+#### Input and output talking to the same entity: protocols {% raw %}{#protocol}{% endraw %}
 
 Now we come to the case where coroutines deliver more than a performance optimisation: where they do both input and output, but the output goes to the _same entity_ that’s providing the input.
 
@@ -440,7 +440,7 @@ This isn’t an article about SSH alone, of course. That’s just a particularly
 
 In fact, that code has an extra wrinkle too. Sometimes, when authentication fails in HTTP, you can try again within the same network connection; but sometimes you have to close the connection to the HTTP server and open a fresh one. So there’s not just a sequence of operations _within_ a network connection: there’s also a sequence of _connections_ involved. In PuTTY, this is all handled with a single HTTP proxy coroutine: sometimes it yields a special return value to its caller saying ‘please close the connection, open a fresh one, and call me back when that one’s ready’. Then it can go back round to the top of its loop and continue trying to authenticate.
 
-#### More general, and miscellaneous {#uc-general}
+#### More general, and miscellaneous {% raw %}{#uc-general}{% endraw %}
 
 In all of the previous subsections, I’ve shown coroutines with at most one input channel and at most one output. Of course, you can also have more than one of each.
 
@@ -506,7 +506,7 @@ Instead of doing that, the _right_ way – and some languages actually do this, 
 
 Of course, if you’re not using a language that already works this way, then finding a way to implement it can be tricky or impossible. But once I just about found a way to do it in C, combining my [preprocessor coroutine system](https://www.chiark.greenend.org.uk/~sgtatham/coroutines.html) with [another preprocessor trick](https://www.chiark.greenend.org.uk/~sgtatham/mp/) for making custom control structures at all. In C++ you might do it more easily by having the macro at the call site expand to a range-`for` loop. It will depend on the language.
 
-### Coroutines large and small {#large-and-small}
+### Coroutines large and small {% raw %}{#large-and-small}{% endraw %}
 
 That ‘control flow nature’ that makes a piece of code a natural fit for coroutines can occur at all scales, from the largest to the smallest.
 
@@ -518,7 +518,7 @@ And in some other situations, you might have a variable number of coroutines, wi
 
 So, when you’re on the lookout for coroutine-shaped parts of a program, don’t forget to look for the large ones, the small ones, and everything in between!
 
-#### Activation energy {#activation-energy}
+#### Activation energy {% raw %}{#activation-energy}{% endraw %}
 
 Of course, depending on the language, that might not be good advice after all.
 
@@ -530,7 +530,7 @@ However, C++20 does let you reuse the promise class for multiple coroutines that
 
 (Also, this is only a temporary complaint about C++. C++23 will bring `std::generator`, which should make this kind of simple job _actually_ simple again.)
 
-### Combine with input queues {#queues}
+### Combine with input queues {% raw %}{#queues}{% endraw %}
 
 In TAOCP’s presentation of coroutines, and many others, the whole point is that you yield to the other piece of code precisely when you have data to transfer. If a producer is constructing a stream of objects and sending them to a consumer, then you write the producer as if it has a function it can call for ‘here, I have this object for you’, and you write the consumer as if it has a function for ‘ok, what’s my next object?’, and there’s exactly one pair of transfers of control for each object that traverses the boundary.
 
@@ -560,7 +560,7 @@ But, just like I’ve been saying about everything else in this article, don’t
 
 (`spigot` is a good example of this problem. The coroutines in that are mostly generators that yield streams of integer matrices. For some generators, the matrices are uniform and simple; for others, an occasional matrix is _exceptionally_ costly to compute. So in that application, queues didn’t seem worth the effort; yielding exactly once per matrix is the simplest way to be absolutely sure that we never even start trying to compute a matrix until its consumer knows it’s needed.)
 
-### Combine with ambient pre-filters {#handlers}
+### Combine with ambient pre-filters {% raw %}{#handlers}{% endraw %}
 
 Here’s one more trick on the theme of ‘only use coroutines for the coroutine-shaped parts’.
 
@@ -651,14 +651,14 @@ Then, when the `HandlerInstaller` goes out of scope at the end of the block, its
 
 I haven’t had a chance to experiment with this style yet, because you can’t do it with preprocessor coroutines. (Not even in C++, where you do have destructors. Preprocessor coroutines in C++ require all the coroutine’s persistent variables to be members of its containing class, so they can’t be scoped to sub-blocks of a function.) But you could do it in C++20’s native coroutines, where you get to declare block-local variables in a natural way. So when I write my first real system based on C++20 coroutines, I might give it a try!
 
-Coroutine paradigms {#features}
+Coroutine paradigms {% raw %}{#features}{% endraw %}
 -------------------
 
 Finally, in this last section, I’ll talk about some different ways to _think_ about coroutines, in the sense of what kind of thing they even are.
 
 I’ve mentioned a couple of things of that kind in passing, in previous sections: I said that coroutines can be seen as the in-process analogue of a Unix pipe, or as the imperative-programming analogue of lazy evaluation (particularly something like Haskell’s lazy lists). But those were more about the kind of _tasks_ you can use them for; the next few sections will be more about what they _are_ than what you can use them as.
 
-### TAOCP’s coroutines: symmetric, utterly stackless {#taocp}
+### TAOCP’s coroutines: symmetric, utterly stackless {% raw %}{#taocp}{% endraw %}
 
 Knuth’s presentation of coroutines in The Art of Computer Programming calls them a ‘generalisation’ of subroutines. That characterisation doesn’t make sense in all contexts, but in that particular context, it does.
 
@@ -682,7 +682,7 @@ And that’s the sense in which coroutines ‘generalise’ subroutines. With su
 
 So, unlike most languages’ built-in coroutines (and certainly unlike my C preprocessor approach), this setup is completely symmetric. There is no sense in which one of the two functions ‘really is’ the caller, and the other one is just ‘pretending to be’ the caller using a special kind of yield statement. Each one is doing exactly the same thing as the other. They are _co_\-routines, in the sense of “equal partners”.
 
-### A subroutine that can resume from where it last left off {#resumable-callee}
+### A subroutine that can resume from where it last left off {% raw %}{#resumable-callee}{% endraw %}
 
 Of course, in modern CPU architectures, there _is_ a stack. And in almost all high-level languages (by which, in this case, I mean ‘any higher than assembly’ – even COBOL counts), there will be a function call and return system that assumes a stack, and each function will store its local variables on the stack. So if we want to have functions interoperating in a coroutine style, and each of those functions occupies a region of memory on the call stack, then one function is going to _have_ to be higher up the stack than the other.
 
@@ -734,7 +734,7 @@ So, if you care about exceptions, perhaps that might drive your choice of which 
 
 (And if, in some extra-confusing scenario, you want exceptions to be able to travel in _both_ directions – maybe based on the type of the exception – then you _really_ have a challenge on your hands. Good luck, and have fun.)
 
-### Cooperative threads that identify which thread to transfer to next {#cothreads}
+### Cooperative threads that identify which thread to transfer to next {% raw %}{#cothreads}{% endraw %}
 
 I performed a minor sleight of hand in the previous section. Did you spot it?
 
@@ -776,7 +776,7 @@ But it’s just as likely that a language’s implementation of coroutines will 
 
 I’ll end this section on an extra-confusing note: if the coroutine stacks are kept in a format completely separate from the physical call stack of a thread, that opens the possibility of combining stacks of coroutines _with_ conventional threads – so that when a coroutine stack has some work it can do, it could be resumed on the call stack of any thread that was free!
 
-### A named object identifying a program activity {#named-object}
+### A named object identifying a program activity {% raw %}{#named-object}{% endraw %}
 
 Finally, I want to go back to a point I touched on in [a previous section](#vs-threads).
 
@@ -820,7 +820,7 @@ One thing that springs to mind is testing, if your coroutine accepts input on ea
 
 Another possibility is to use the same idea at run time, to probe the coroutine from outside and _find_ an input that will cause it to respond in a particular way. But I haven’t thought of a use for that at all!
 
-Conclusion {#conclusion}
+Conclusion {% raw %}{#conclusion}{% endraw %}
 ----------
 
 I started writing this article because I wondered if I had anything in particular to say about coroutines. Turns out I had quite a lot!
@@ -829,7 +829,7 @@ Perhaps this will convince a few more people to become coroutine fans. Or perhap
 
 But it was fun to write, and helped me clarify my _own_ thoughts. And it’s my blog so I can be self-indulgent if I want to. Thanks for reading!
 
-Footnotes {#footnotes}
+Footnotes {% raw %}{#footnotes}{% endraw %}
 ---------
 
 With any luck, you should be able to read the footnotes of this article in place, by clicking on the superscript footnote number or the corresponding numbered tab on the right side of the page.

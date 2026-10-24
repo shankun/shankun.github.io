@@ -59,7 +59,7 @@ Container.of(2).chain(function(two) {
 
 ## 瓶中之船
 
-{{ figure(src="/img/ship_in_a_bottle.jpg" via="http://hollycarden.deviantart.com") }}
+{{ <figure src="/img/ship_in_a_bottle.jpg" via="http://hollycarden.deviantart.com" /> }}
 
 `ap` 就是这样一种函数，能够把一个 functor 的函数值应用到另一个 functor 的值上。把这句话快速地说上 5 遍。
 
@@ -221,7 +221,7 @@ map(add, Right(2)).ap(Right(3))
 
 # 免费开瓶器
 
-{{ figure(src="/img/canopener.jpg" via="http://breannabeckmeyer.com/drawing.html") }}
+{{ <figure src="/img/canopener.jpg" via="http://breannabeckmeyer.com/drawing.html" /> }}
 
 我们尚未对衍生函数（derived function）着墨过多。不过看到本书介绍的所有这些接口都互相依赖并遵守一些定律，那么我们就可以根据一些强接口来定义一些弱接口了。
 
